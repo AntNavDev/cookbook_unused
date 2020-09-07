@@ -26,6 +26,9 @@ Route::group(['middleware' => ['auth']], function(){
 
     // Upload Images
     Route::post('images-store', 'ImageController@store')->name('images.store');
+
+    // Ingredient Routes
+    Route::post('ingredient-store', 'IngredientController@store')->name('ingredients.store');
 });
 
 // Public recipe routes

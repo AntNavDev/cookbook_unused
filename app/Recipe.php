@@ -17,4 +17,9 @@ class Recipe extends Model
     {
         return $this->morphMany(Image::class, 'imageable');
     }
+
+    public function ingredients()
+    {
+        return $this->hasMany(Ingredient::class);
+    }
 }
