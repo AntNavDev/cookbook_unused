@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    {{ dd($recipe->ingredients) }}
     <div class="row">
         <div class="col-md-12">
             <a href="{{ URL::previous() }}">Back to recipe page</a>
@@ -31,27 +32,7 @@
 @endsection
 
 @section('modals')
-    <!-- Modal -->
-    <div class="modal fade" id="addIngredientModal" tabindex="-1" role="dialog" aria-labelledby="addIngredientModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addIngredientModalLabel">Add Ingredient</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <label for="name">Name</label>
-                    <input type="text" name="name" class="form-control" />
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save Ingredient</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('ingredients.ingredient-modal', [ 'recipe_id' => $recipe->id ])
 @endsection
 
 @push('scripts')
