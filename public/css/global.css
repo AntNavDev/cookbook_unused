@@ -1,0 +1,62 @@
+.add-recipe-btn {
+    width: 150px;
+}
+.hide {
+    display: none!important;
+}
+#accordion h4:hover {
+    cursor: pointer;
+}
+#accordion h4:focus {
+    outline: 0;
+}
+#add-recipe-modal textarea {
+    height: 150px;
+}
+.photo-cont {
+    height: 100%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+    padding: 10px;
+}
+.food-photo {
+    min-height: 500px;
+    width: 700px;
+    float: right;
+}
+.fa-question-circle:hover,
+#image_dropzone:hover {
+    cursor: pointer;
+}
+svg.fa-question-circle {
+    color: #3490dc;
+}
+.btn-rounded {
+    border-radius: 20px;
+}
+.no-border {
+    border: none;
+}
+#waitingModal .modal-body {
+    text-align: center;
+}
+#waitingModal .modal-dialog {
+    top: 25vh;
+}
+#image_dropzone {
+    min-height: 350px;
+    border: 3px dashed #636b6f;
+}
+#image_dropzone .action-image {
+    text-align: center;
+    margin: auto;
+}
+.dz-progress {
+    display: none !important;
+}
+.invalid-msg {
+    background-color: #f9d6d5;
+    color: #761b18;
+    border-color: #f7c6c5;
+    padding: 5px;
+    border-radius: 5px;
+}
