@@ -48,6 +48,7 @@
     @include('partials.waiting-modal')
     @yield('modals')
     <script src="{{ asset('dropzone/dist/dropzone.js') }}"></script>
+    <script src="{{ asset('js/global.js') }}"></script>
     @stack('scripts')
 </body>
 </html>

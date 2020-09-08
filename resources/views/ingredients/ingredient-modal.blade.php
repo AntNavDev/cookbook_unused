@@ -21,7 +21,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close-ingredient-modal">Close</button>
                 <button type="button" class="btn btn-primary" id="save-ingredient-button">Save Ingredient</button>
             </div>
         </div>
@@ -36,6 +36,12 @@
         fetch('{{ route("ingredients.store") }}', {
             method: 'POST',
             body: new FormData(form)
+        })
+        .then(response => response.json())
+        .then((data) => {
+            console.log(data);
+            document.getElementById('ingredient-list').setAttribute('data', JSON.stringify(data.ingredients));
+            document.getElementById('close-ingredient-modal').click();
         });
     });
 </script>

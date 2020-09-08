@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    {{ dd($recipe->ingredients) }}
     <div class="row">
         <div class="col-md-12">
             <a href="{{ URL::previous() }}">Back to recipe page</a>
@@ -18,6 +17,8 @@
         </div>
 
         <div class="col-md-4">
+
+            <div id="ingredient-list" data="{{ json_encode([ 'ingredients' => $recipe->ingredients ]) }}"></div>
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addIngredientModal">Add an ingredient</button>
         </div>
 

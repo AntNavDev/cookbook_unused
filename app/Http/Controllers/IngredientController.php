@@ -28,6 +28,7 @@ class IngredientController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'Ingredient saved!',
+                'ingredients' => $recipe->ingredients,
             ]);
         }
 
