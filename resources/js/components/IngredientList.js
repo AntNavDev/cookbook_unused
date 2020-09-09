@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 class ListItem extends React.Component {
     constructor(props){
@@ -19,7 +21,7 @@ class ListItem extends React.Component {
     render(){
         return(
             <li className="list-item">
-                {this.state.name} <span className="float-right" onClick={this.deleteObject}>X</span>
+                {this.state.name} <FontAwesomeIcon icon={faTrash} className="float-right" onClick={this.deleteObject} />
             </li>
         );
     }
