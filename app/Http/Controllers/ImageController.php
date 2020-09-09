@@ -18,19 +18,28 @@ class ImageController extends Controller
 
             if($image->isValid() && $image->store('public/images'))
             {
-                $url = 'images/' . $image->hashName();
+                $filename = $image->hashName();
                 $name = $image->getClientOriginalName();
                 $user_image = new Image([
                     'name' => $name,
-                    'url'  => $url,
+                    'filename'  => $filename,
                 ]);
 
                 $recipe = Recipe::find($recipe_id);
+                $imagePath = '';
+                if($recipe->display_image)
+                {
+                    $imagePath = public_path('storage/images/'.$recipe->display_image);
+                }
+                if(\File::exists($imagePath))
+                {
+                    unlink($imagePath);
+                }
                 if($recipe->images()->save($user_image))
                 {
                     return response()->json([
                         'success' => true,
-                        'image_path' => Storage::url($url),
+                        'image_path' => Storage::url('images/' . $filename),
                     ]);
                 }
             }

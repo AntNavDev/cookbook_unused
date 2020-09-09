@@ -11,7 +11,7 @@
             <h2>{{ $recipe->name }}</h2>
             <div class="preview-container">
                 @foreach($recipe->images as $image)
-                    <img src="{{ Storage::url($image->url) }}" height="200" width="200" />
+                    <img src="{{ asset(Storage::url($image->image_path)) }}" height="200" width="200" />
                 @endforeach
             </div>
         </div>

@@ -6,9 +6,7 @@
             <a href="{{ route('recipes.edit', [auth()->user(), $recipe]) }}">Edit {{ $recipe->name }}</a>
         </div>
         <div class="col-md-8">
-            @foreach($recipe->images as $image)
-                <img src="{{ Storage::url($image->url) }}" height="200" width="200" />
-            @endforeach
+            <img src="{{ Storage::url($recipe->display_image->image_path) }}" height="200" width="200" />
         </div>
     </div>
 @endsection

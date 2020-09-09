@@ -13,6 +13,11 @@ class Recipe extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function getDisplayImageAttribute()
+    {
+        return $this->images->first();
+    }
+
     public function images()
     {
         return $this->morphMany(Image::class, 'imageable');
