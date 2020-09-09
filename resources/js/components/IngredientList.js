@@ -17,7 +17,7 @@ class IngredientList extends React.Component {
     render(){
         console.log("trigger render");
         const items = this.state.ingredients.map((ingredient) =>
-            <li key={ingredient.id}>{ingredient.name}</li>
+            <li key={ingredient.id}>{ingredient.name} <i class="fas fa-trash float-right"></i></li>
         );
         console.log("Ingredients as items: ", items);
         return (

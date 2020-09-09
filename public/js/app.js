@@ -65953,7 +65953,9 @@ var IngredientList = /*#__PURE__*/function (_React$Component) {
       var items = this.state.ingredients.map(function (ingredient) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: ingredient.id
-        }, ingredient.name);
+        }, ingredient.name, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          "class": "fas fa-trash float-right"
+        }));
       });
       console.log("Ingredients as items: ", items);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Ingredients:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, items));
@@ -65963,9 +65965,47 @@ var IngredientList = /*#__PURE__*/function (_React$Component) {
   return IngredientList;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
+var App = /*#__PURE__*/function (_React$Component2) {
+  _inherits(App, _React$Component2);
+
+  var _super2 = _createSuper(App);
+
+  function App(props) {
+    var _this2;
+
+    _classCallCheck(this, App);
+
+    _this2 = _super2.call(this, props);
+    _this2.state = {
+      data: JSON.parse(_this2.props.data)
+    };
+    return _this2;
+  }
+
+  _createClass(App, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      console.log("App has mounted...");
+      this.setState(function (state, props) {
+        data: JSON.parse(props.data);
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      console.log("App is rendering IngredientList...");
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(IngredientList, {
+        ingredients: this.state.data.ingredients
+      }));
+    }
+  }]);
+
+  return App;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
 var data = document.getElementById('ingredient-list').getAttribute('data');
-var element = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(IngredientList, {
-  ingredients: JSON.parse(data).ingredients
+var element = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(App, {
+  data: data
 });
 react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(element, document.getElementById('ingredient-list'));
 

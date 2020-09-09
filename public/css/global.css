@@ -19,9 +19,8 @@
     padding: 10px;
 }
 .food-photo {
-    min-height: 500px;
-    width: 700px;
-    float: right;
+    min-height: 300px;
+    width: 100%;
 }
 .fa-question-circle:hover,
 #image_dropzone:hover {
@@ -59,4 +58,7 @@ svg.fa-question-circle {
     border-color: #f7c6c5;
     padding: 5px;
     border-radius: 5px;
+}
+.fa-trash:hover {
+    cursor: pointer;
 }
