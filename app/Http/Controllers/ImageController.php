@@ -29,9 +29,9 @@ class ImageController extends Controller
                 $imagePath = '';
                 if($recipe->display_image)
                 {
-                    $imagePath = public_path('storage/images/'.$recipe->display_image);
+                    $imagePath = public_path('storage/' . $recipe->display_image->image_path);
                 }
-                if(\File::exists($imagePath))
+                if(\File::exists($imagePath) && $recipe->display_image->delete())
                 {
                     unlink($imagePath);
                 }
