@@ -3,6 +3,13 @@
 @section('content')
 
 <div>
+    <ul>
+        @foreach(auth()->user()->recipes as $recipe)
+            <li>
+                <a href="{{ route('recipes.single', ['user_id' => auth()->user(), 'recipe_id' => $recipe]) }}">{{ $recipe->name }}</a>
+            </li>
+        @endforeach
+    </ul>
     <button type="button" data-toggle="modal" data-target="#recipeModal" class="btn add-recipe-btn btn-success">Add Recipe</button>
 </div>
 
@@ -20,7 +27,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="add-recipe-form" action="{{ route('recipes.store') }}" method="post">
+                    <form id="add-recipe-form" action="{{ route('recipes.store', auth()->user()) }}" method="post">
                         {{ csrf_field() }}
                         <label>Recipe Name</label>
                         <input type="text" class="form-control" name="name" placeholder="Recipe Name..." required />

@@ -31,8 +31,31 @@ class IngredientList extends React.Component {
     }
 }
 
+class App extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = { data: JSON.parse(this.props.data) };
+    }
+
+    componentDidMount(){
+        console.log("App has mounted...");
+        this.setState((state, props) => {
+            data: JSON.parse(props.data)
+        });
+    }
+
+    render(){
+        console.log("App is rendering IngredientList...");
+        return (
+            <div>
+                <IngredientList ingredients={this.state.data.ingredients} />
+            </div>
+        );
+    }
+}
+
 var data = document.getElementById('ingredient-list').getAttribute('data');
-const element = <IngredientList ingredients={JSON.parse(data).ingredients} />;
+const element = <App data={data} />;
 ReactDOM.render(
     element,
     document.getElementById('ingredient-list')

@@ -20,9 +20,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::group(['middleware' => ['auth']], function(){
-    // User recipes routes
-    Route::get('my-recipes', 'RecipeController@myRecipes')->name('recipes.my-recipes');
-    Route::post('recipes-store', 'RecipeController@store')->name('recipes.store');
+
+    Route::prefix('user/{user_id}')->group(function(){
+        // User recipes routes
+        Route::get('my-recipes', 'RecipeController@myRecipes')->name('recipes.my-recipes');
+        Route::post('recipes-store', 'RecipeController@store')->name('recipes.store');
+        Route::get('recipes/{recipe_id}/edit', 'RecipeController@edit')->name('recipes.edit');
+    });
 
     // Upload Images
     Route::post('images-store', 'ImageController@store')->name('images.store');
@@ -31,6 +35,9 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('ingredient-store', 'IngredientController@store')->name('ingredients.store');
 });
 
-// Public recipe routes
-Route::get('recipes/{id}', 'RecipeController@show')->name('recipes.single');
-Route::get('recipes/{id}/edit', 'RecipeController@edit')->name('recipes.edit');
+
+
+Route::prefix('user/{user_id}')->group(function(){
+    // Public recipe routes
+    Route::get('recipes/{recipe_id}', 'RecipeController@show')->name('recipes.single');
+});
