@@ -1,6 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+class ListItem extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            id: this.props.id,
+            name: this.props.name
+        };
+
+        this.deleteObject = this.deleteObject.bind(this);
+    }
+
+    deleteObject(){
+        console.log("Delete the resource.");
+    }
+
+    render(){
+        return(
+            <li className="list-item">
+                {this.state.name} <span className="float-right" onClick={this.deleteObject}>X</span>
+            </li>
+        );
+    }
+}
+
 class IngredientList extends React.Component {
     constructor(props){
         super(props);
@@ -17,13 +41,13 @@ class IngredientList extends React.Component {
     render(){
         console.log("trigger render");
         const items = this.state.ingredients.map((ingredient) =>
-            <li key={ingredient.id}>{ingredient.name} <i class="fas fa-trash float-right"></i></li>
+            <ListItem key={ingredient.id} id={ingredient.id} name={ingredient.name} />
         );
         console.log("Ingredients as items: ", items);
         return (
             <div>
                 <h3>Ingredients:</h3>
-                <ul>
+                <ul className="ingredient-list">
                     {items}
                 </ul>
             </div>

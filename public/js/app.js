@@ -65921,21 +65921,60 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-var IngredientList = /*#__PURE__*/function (_React$Component) {
-  _inherits(IngredientList, _React$Component);
+var ListItem = /*#__PURE__*/function (_React$Component) {
+  _inherits(ListItem, _React$Component);
 
-  var _super = _createSuper(IngredientList);
+  var _super = _createSuper(ListItem);
 
-  function IngredientList(props) {
+  function ListItem(props) {
     var _this;
 
-    _classCallCheck(this, IngredientList);
+    _classCallCheck(this, ListItem);
 
     _this = _super.call(this, props);
     _this.state = {
-      ingredients: _this.props.ingredients
+      id: _this.props.id,
+      name: _this.props.name
     };
+    _this.deleteObject = _this.deleteObject.bind(_assertThisInitialized(_this));
     return _this;
+  }
+
+  _createClass(ListItem, [{
+    key: "deleteObject",
+    value: function deleteObject() {
+      console.log("Delete the resource.");
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "list-item"
+      }, this.state.name, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "float-right",
+        onClick: this.deleteObject
+      }, "X"));
+    }
+  }]);
+
+  return ListItem;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+var IngredientList = /*#__PURE__*/function (_React$Component2) {
+  _inherits(IngredientList, _React$Component2);
+
+  var _super2 = _createSuper(IngredientList);
+
+  function IngredientList(props) {
+    var _this2;
+
+    _classCallCheck(this, IngredientList);
+
+    _this2 = _super2.call(this, props);
+    _this2.state = {
+      ingredients: _this2.props.ingredients
+    };
+    return _this2;
   }
 
   _createClass(IngredientList, [{
@@ -65951,35 +65990,37 @@ var IngredientList = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       console.log("trigger render");
       var items = this.state.ingredients.map(function (ingredient) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          key: ingredient.id
-        }, ingredient.name, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-          "class": "fas fa-trash float-right"
-        }));
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ListItem, {
+          key: ingredient.id,
+          id: ingredient.id,
+          name: ingredient.name
+        });
       });
       console.log("Ingredients as items: ", items);
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Ingredients:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, items));
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Ingredients:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "ingredient-list"
+      }, items));
     }
   }]);
 
   return IngredientList;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-var App = /*#__PURE__*/function (_React$Component2) {
-  _inherits(App, _React$Component2);
+var App = /*#__PURE__*/function (_React$Component3) {
+  _inherits(App, _React$Component3);
 
-  var _super2 = _createSuper(App);
+  var _super3 = _createSuper(App);
 
   function App(props) {
-    var _this2;
+    var _this3;
 
     _classCallCheck(this, App);
 
-    _this2 = _super2.call(this, props);
-    _this2.state = {
-      data: JSON.parse(_this2.props.data)
+    _this3 = _super3.call(this, props);
+    _this3.state = {
+      data: JSON.parse(_this3.props.data)
     };
-    return _this2;
+    return _this3;
   }
 
   _createClass(App, [{

@@ -59,6 +59,12 @@ svg.fa-question-circle {
     padding: 5px;
     border-radius: 5px;
 }
+.fa-trash {
+    color: #990f0a;
+}
 .fa-trash:hover {
     cursor: pointer;
+}
+.ingredient-list .list-item {
+    list-style: none;
 }
