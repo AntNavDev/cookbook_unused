@@ -10,9 +10,7 @@
         <div class="col-md-4">
             <h2>{{ $recipe->name }}</h2>
             <div class="preview-container">
-                @foreach($recipe->images as $image)
-                    <img src="{{ asset(Storage::url($image->image_path)) }}" height="200" width="200" />
-                @endforeach
+                <img id="display-image" src="{{ Storage::url($recipe->display_image->image_path) }}" height="200" width="200" />
             </div>
         </div>
 
@@ -58,7 +56,11 @@
                 });
             },
             success: function(file, response){
-                console.log(response);
+                if(typeof response.image_path !== 'undefined')
+                {
+                    this.removeAllFiles();
+                    document.getElementById('display-image').setAttribute('src', response.image_path);
+                }
             }
         });
 
