@@ -6,7 +6,7 @@
     <ul>
         @foreach(auth()->user()->recipes as $recipe)
             <li>
-                <a href="{{ route('recipes.single', ['user_id' => auth()->user(), 'recipe_id' => $recipe]) }}">{{ $recipe->name }}</a>
+                <a href="{{ route('recipes.single', ['user' => auth()->user(), 'recipe' => $recipe]) }}">{{ $recipe->name }}</a>
             </li>
         @endforeach
     </ul>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 use App\Recipe;
 
 class RecipeController extends Controller
@@ -12,10 +13,8 @@ class RecipeController extends Controller
         return view('recipes.my-recipes');
     }
 
-    public function show($id)
+    public function show(User $user, Recipe $recipe)
     {
-        $recipe = Recipe::find($id);
-
         $data = compact('recipe');
         return view('recipes.single', $data);
     }
@@ -36,29 +35,23 @@ class RecipeController extends Controller
 
         auth()->user()->recipes()->save($recipe);
 
-        return redirect()->route('recipes.single', $recipe->id);
+        return redirect()->route('recipes.single', [auth()->user(), $recipe->id]);
     }
 
-    public function edit($id)
+    public function edit(User $user, Recipe $recipe)
     {
-        $recipe = Recipe::find($id);
-
         $data = compact('recipe');
         return view('recipes.edit', $data);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Recipe $recipe)
     {
         $request->validate([
             'name' => 'required',
             'description' => 'required',
         ]);
 
-        $inputs = $request->all();
-
-        $recipe = Recipe::find($recipe_id);
-
-        $recipe->update($inputs);
+        $recipe->update($request->all());
 
         return redirect()->back();
     }

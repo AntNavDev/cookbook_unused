@@ -43,12 +43,18 @@
             addRemoveLinks: true,
             url: "{{ route('images.store') }}",
             autoProcessQueue: false,
+            maxFiles: 1,
             acceptedFiles: ".jpeg,.jpg,.png",
             paramName: "photo",
             init: function(){
                 this.on('sending', function(file, xhr, formData){
                     formData.append("_token", "{{ csrf_token() }}");
                     formData.append("recipe_id", "{{ $recipe->id }}");
+                });
+
+                this.on("maxfilesexceeded", function(file) {
+                    this.removeAllFiles();
+                    this.addFile(file);
                 });
             },
             success: function(file, response){
