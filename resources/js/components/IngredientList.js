@@ -86,9 +86,11 @@ class App extends React.Component {
     }
 }
 
-var data = document.getElementById('ingredient-list').getAttribute('data');
-const element = <App data={data} />;
-ReactDOM.render(
-    element,
-    document.getElementById('ingredient-list')
-);
+if(document.getElementById('ingredient-list')){
+    var data = document.getElementById('ingredient-list').getAttribute('data');
+    const element = <App data={data} />;
+    ReactDOM.render(
+        element,
+        document.getElementById('ingredient-list')
+    );
+}

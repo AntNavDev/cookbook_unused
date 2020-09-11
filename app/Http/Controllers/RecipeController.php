@@ -29,12 +29,12 @@ class RecipeController extends Controller
         $recipe = new Recipe([
             'name' => $request->name,
             'description' => $request->description,
-            'is_public' => $request->has('is_public') ? $request->is_public : 1,
+            'is_public' => $request->has('is_public') ? $request->is_public : 0,
         ]);
 
         auth()->user()->recipes()->save($recipe);
 
-        return redirect()->route('recipes.single', [auth()->user(), $recipe->id]);
+        return redirect()->route('recipes.single', [$recipe->id]);
     }
 
     public function edit(Recipe $recipe)

@@ -14,7 +14,7 @@ class HomeController extends Controller
                                     ->take(5)
                                     ->get();
 
-        dd($latest_recipes);
+        // dd($latest_recipes);
 
         $data = compact('latest_recipes');
         return view('home', $data);

@@ -10,7 +10,9 @@
         <div class="col-md-4">
             <h2>{{ $recipe->name }}</h2>
             <div class="preview-container">
-                <img id="display-image" src="{{ Storage::url($recipe->display_image->image_path) }}" height="200" width="200" />
+                @if($recipe->display_image)
+                    <img id="display-image" src="{{ Storage::url($recipe->display_image->image_path) }}" height="200" width="200" />
+                @endif
             </div>
         </div>
 
@@ -66,13 +68,11 @@
 
         document.getElementById("submit-image-btn").addEventListener("click", function () {
             if (myDropzone.files.length == 0){
-                // $('').removeClass('hide');
-                console.log("Hide Something?");
+                //
             } else if(myDropzone.getRejectedFiles().length > 0) {
                 alert("The attached file is invalid");
             } else {
-                // $('#waitingModal').modal('show');
-                // Show a modal...
+                // Show a modal processing...?
                 myDropzone.processQueue();
             }
         });

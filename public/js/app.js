@@ -76929,6 +76929,10 @@ var ListItem = /*#__PURE__*/function (_React$Component) {
     key: "deleteObject",
     value: function deleteObject() {
       console.log("Delete the resource.");
+      var object_id = this.state.id;
+      fetch().then().then(function (data) {
+        console.log("data from fetch", data);
+      });
     }
   }, {
     key: "render",
@@ -77030,11 +77034,13 @@ var App = /*#__PURE__*/function (_React$Component3) {
   return App;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-var data = document.getElementById('ingredient-list').getAttribute('data');
-var element = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(App, {
-  data: data
-});
-react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(element, document.getElementById('ingredient-list'));
+if (document.getElementById('ingredient-list')) {
+  var data = document.getElementById('ingredient-list').getAttribute('data');
+  var element = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(App, {
+    data: data
+  });
+  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(element, document.getElementById('ingredient-list'));
+}
 
 /***/ }),
 
