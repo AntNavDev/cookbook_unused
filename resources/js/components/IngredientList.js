@@ -16,6 +16,12 @@ class ListItem extends React.Component {
 
     deleteObject(){
         console.log("Delete the resource.");
+        let object_id = this.state.id;
+        fetch()
+        .then()
+        .then(function(data){
+            console.log("data from fetch", data);
+        });
     }
 
     render(){

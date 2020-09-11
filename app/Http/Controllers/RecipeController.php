@@ -13,7 +13,7 @@ class RecipeController extends Controller
         return view('recipes.my-recipes');
     }
 
-    public function show(User $user, Recipe $recipe)
+    public function show(Recipe $recipe)
     {
         $data = compact('recipe');
         return view('recipes.single', $data);
@@ -38,7 +38,7 @@ class RecipeController extends Controller
         return redirect()->route('recipes.single', [auth()->user(), $recipe->id]);
     }
 
-    public function edit(User $user, Recipe $recipe)
+    public function edit(Recipe $recipe)
     {
         $data = compact('recipe');
         return view('recipes.edit', $data);
