@@ -26,11 +26,10 @@ class RecipeController extends Controller
             'description' => 'required',
         ]);
 
-        $inputs = $request->all();
-
         $recipe = new Recipe([
-            'name' => $inputs['name'],
-            'description' => $inputs['description']
+            'name' => $request->name,
+            'description' => $request->description,
+            'is_public' => $request->has('is_public') ? $request->is_public : 1,
         ]);
 
         auth()->user()->recipes()->save($recipe);
