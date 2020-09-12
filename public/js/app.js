@@ -77170,6 +77170,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+var spinner_length = 5;
 
 var RecipeCardSpinner = /*#__PURE__*/function (_React$Component) {
   _inherits(RecipeCardSpinner, _React$Component);
@@ -77183,15 +77184,52 @@ var RecipeCardSpinner = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      recipes: _this.props.recipes
+      displayed_recipes: _this.props.recipes.slice(0, spinner_length),
+      recipe_index: 0
     };
     return _this;
   }
 
   _createClass(RecipeCardSpinner, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      this.timerID = setInterval(function () {
+        return _this2.updateSpinner();
+      }, 5000);
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      clearInterval(this.timerID);
+    }
+  }, {
+    key: "updateSpinner",
+    value: function updateSpinner() {
+      var updated_array = this.props.recipes.slice(this.state.recipe_index, spinner_length);
+
+      if (updated_array.length < spinner_length) {
+        updated_array = updated_array.concat(this.props.recipes.slice(0, spinner_length - updated_array.length));
+      }
+
+      var updated_index = this.state.recipe_index + 1;
+
+      if (updated_index >= spinner_length) {
+        updated_index = 0;
+      }
+
+      this.setState(function (state, props) {
+        return {
+          displayed_recipes: updated_array,
+          recipe_index: updated_index
+        };
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      var spinner = this.state.recipes.map(function (recipe) {
+      var spinner = this.state.displayed_recipes.map(function (recipe) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_RecipeCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
           key: recipe.id,
           recipe: recipe
@@ -77210,15 +77248,15 @@ var App = /*#__PURE__*/function (_React$Component2) {
   var _super2 = _createSuper(App);
 
   function App(props) {
-    var _this2;
+    var _this3;
 
     _classCallCheck(this, App);
 
-    _this2 = _super2.call(this, props);
-    _this2.state = {
-      data: JSON.parse(_this2.props.data)
+    _this3 = _super2.call(this, props);
+    _this3.state = {
+      data: JSON.parse(_this3.props.data)
     };
-    return _this2;
+    return _this3;
   }
 
   _createClass(App, [{
