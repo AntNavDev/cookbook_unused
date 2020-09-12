@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <a href="{{ URL::previous() }}">Back to recipe page</a>
+            <a href="{{ route('recipes.single', $recipe) }}">Back to recipe page</a>
         </div>
     </div>
     <div class="row">
@@ -42,7 +42,7 @@
             url: "{{ route('images.store') }}",
             autoProcessQueue: false,
             maxFiles: 1,
-            maxFilesize: 2,
+            maxFilesize: 10,
             acceptedFiles: ".jpeg,.jpg,.png",
             paramName: "photo",
             init: function(){

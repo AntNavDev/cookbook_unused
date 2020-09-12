@@ -19,7 +19,7 @@ class HomeController extends Controller
                                     ->get()
                                     ->toArray();
 
-        dd($latest_recipes);
+        // dd($latest_recipes);
         $data = compact('latest_recipes');
         return view('home', $data);
     }

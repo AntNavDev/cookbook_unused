@@ -12,7 +12,7 @@
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     @auth
-                        <a class="nav-link{{ Request::is('user/*/my-recipes') ? ' active' : '' }}" href="{{ route('recipes.my-recipes', auth()->user()) }}">{{ __('My Recipes') }}</a>
+                        <a class="nav-link{{ Request::is('user/*/my-recipes') ? ' active' : '' }}" href="{{ route('recipes.my-recipes') }}">{{ __('My Recipes') }}</a>
                     @endauth
                 </li>
             </ul>
@@ -38,7 +38,7 @@
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
+                                document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
 

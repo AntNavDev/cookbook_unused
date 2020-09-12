@@ -77105,7 +77105,9 @@ var RecipeCard = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var src = image_directory + this.state.recipe.display_image.filename;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: this.state.recipe.view_recipe_link
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "recipe-spinner-item"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card m-2"
@@ -77118,7 +77120,7 @@ var RecipeCard = /*#__PURE__*/function (_React$Component) {
         alt: this.state.recipe.display_image.name
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "dark-backdrop p-2"
-      }, typeof this.state.recipe.description !== 'undefined' ? this.state.recipe.description : ''))));
+      }, typeof this.state.recipe.description !== 'undefined' ? this.state.recipe.description : '')))));
     }
   }]);
 
