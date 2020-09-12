@@ -73,6 +73,9 @@ svg.fa-question-circle {
     display: inline-block;
     width: 20%;
 }
+.homepage-spinner .recipe-spinner-item .card .card-body img {
+    max-width: 100%;
+}
 .dz-success-mark,
 .dz-error-mark {
     display: none;

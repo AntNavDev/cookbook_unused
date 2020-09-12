@@ -12,11 +12,13 @@ class HomeController extends Controller
         // Get latest recipes and return as an array.
         // Returning as an array allows access to the
         // display image in the react component
-        $latest_recipes = Recipe::where('is_public', 1)
+        $latest_recipes = Recipe::has('images')
+                                    ->where('is_public', 1)
                                     ->orderBy('created_at', 'desc')
                                     ->take(5)
                                     ->get()
                                     ->toArray();
+
 
         $data = compact('latest_recipes');
         return view('home', $data);
