@@ -10,9 +10,7 @@
         <div class="col-md-4">
             <h2>{{ $recipe->name }}</h2>
             <div class="preview-container">
-                @if($recipe->display_image)
-                    <img id="display-image" src="{{ Storage::url($recipe->display_image->image_path) }}" height="200" width="200" />
-                @endif
+                <img id="display-image" src="{{ $recipe->display_image ? Storage::url($recipe->display_image->image_path) : asset('images/plate-fork-knife.jpg') }}" height="200" width="200" />
             </div>
         </div>
 
