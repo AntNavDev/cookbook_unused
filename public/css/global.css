@@ -68,3 +68,15 @@ svg.fa-question-circle {
 .ingredient-list .list-item {
     list-style: none;
 }
+.homepage-spinner .recipe-spinner-item {
+    list-style: none;
+    display: inline-block;
+    width: 20%;
+}
+.dz-success-mark,
+.dz-error-mark {
+    display: none;
+}
+.dz-image-preview {
+    text-align: center;
+}

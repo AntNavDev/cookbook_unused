@@ -77082,6 +77082,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 
+var image_directory = "/storage/images/";
 
 var RecipeCard = /*#__PURE__*/function (_React$Component) {
   _inherits(RecipeCard, _React$Component);
@@ -77103,10 +77104,19 @@ var RecipeCard = /*#__PURE__*/function (_React$Component) {
   _createClass(RecipeCard, [{
     key: "render",
     value: function render() {
-      console.log("Recipe: ", this.state.recipe);
+      var src = image_directory + this.state.recipe.display_image.filename;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "recipe-spinner-item"
-      }, this.state.recipe.name);
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "card m-2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "card-header"
+      }, this.state.recipe.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "card-body text-center"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: src,
+        alt: this.state.recipe.display_image.name
+      }))));
     }
   }]);
 

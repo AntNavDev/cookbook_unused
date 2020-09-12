@@ -1,1 +1,1 @@
-<div id="recipe-spinner" data="{{ json_encode([ 'recipes' => $latest_recipes ]) }}"></div>
+<div id="recipe-spinner" data="{{ json_encode([ 'recipes' => $latest_recipes ]) }}" class="homepage-spinner"></div>

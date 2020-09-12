@@ -42,6 +42,7 @@
             url: "{{ route('images.store') }}",
             autoProcessQueue: false,
             maxFiles: 1,
+            maxFilesize: 2,
             acceptedFiles: ".jpeg,.jpg,.png",
             paramName: "photo",
             init: function(){

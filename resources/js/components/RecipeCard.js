@@ -1,5 +1,7 @@
 import React from 'react';
 
+const image_directory = "/storage/images/";
+
 class RecipeCard extends React.Component {
     constructor(props){
         super(props);
@@ -7,10 +9,17 @@ class RecipeCard extends React.Component {
     }
 
     render(){
-        console.log("Recipe: ", this.state.recipe);
+        const src = image_directory + this.state.recipe.display_image.filename;
         return(
             <li className="recipe-spinner-item">
-                {this.state.recipe.name}
+                <div className="card m-2">
+                    <div className="card-header">
+                        {this.state.recipe.name}
+                    </div>
+                    <div className="card-body text-center">
+                        <img src={src} alt={this.state.recipe.display_image.name} />
+                    </div>
+                </div>
             </li>
         );
     }
