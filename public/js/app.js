@@ -76777,6 +76777,10 @@ __webpack_require__(/*! ./components/Example */ "./resources/js/components/Examp
 
 __webpack_require__(/*! ./components/IngredientList */ "./resources/js/components/IngredientList.js");
 
+__webpack_require__(/*! ./components/RecipeCard */ "./resources/js/components/RecipeCard.js");
+
+__webpack_require__(/*! ./components/RecipeCardSpinner */ "./resources/js/components/RecipeCardSpinner.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -77040,6 +77044,187 @@ if (document.getElementById('ingredient-list')) {
     data: data
   });
   react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(element, document.getElementById('ingredient-list'));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/RecipeCard.js":
+/*!***********************************************!*\
+  !*** ./resources/js/components/RecipeCard.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var RecipeCard = /*#__PURE__*/function (_React$Component) {
+  _inherits(RecipeCard, _React$Component);
+
+  var _super = _createSuper(RecipeCard);
+
+  function RecipeCard(props) {
+    var _this;
+
+    _classCallCheck(this, RecipeCard);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      recipe: _this.props.recipe
+    };
+    return _this;
+  }
+
+  _createClass(RecipeCard, [{
+    key: "render",
+    value: function render() {
+      console.log("Recipe: ", this.state.recipe);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "recipe-spinner-item"
+      }, this.state.recipe.name);
+    }
+  }]);
+
+  return RecipeCard;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (RecipeCard);
+
+/***/ }),
+
+/***/ "./resources/js/components/RecipeCardSpinner.js":
+/*!******************************************************!*\
+  !*** ./resources/js/components/RecipeCardSpinner.js ***!
+  \******************************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _RecipeCard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./RecipeCard */ "./resources/js/components/RecipeCard.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+var RecipeCardSpinner = /*#__PURE__*/function (_React$Component) {
+  _inherits(RecipeCardSpinner, _React$Component);
+
+  var _super = _createSuper(RecipeCardSpinner);
+
+  function RecipeCardSpinner(props) {
+    var _this;
+
+    _classCallCheck(this, RecipeCardSpinner);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      recipes: _this.props.recipes
+    };
+    return _this;
+  }
+
+  _createClass(RecipeCardSpinner, [{
+    key: "render",
+    value: function render() {
+      var spinner = this.state.recipes.map(function (recipe) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_RecipeCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          key: recipe.id,
+          recipe: recipe
+        });
+      });
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, spinner);
+    }
+  }]);
+
+  return RecipeCardSpinner;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+var App = /*#__PURE__*/function (_React$Component2) {
+  _inherits(App, _React$Component2);
+
+  var _super2 = _createSuper(App);
+
+  function App(props) {
+    var _this2;
+
+    _classCallCheck(this, App);
+
+    _this2 = _super2.call(this, props);
+    _this2.state = {
+      data: JSON.parse(_this2.props.data)
+    };
+    return _this2;
+  }
+
+  _createClass(App, [{
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(RecipeCardSpinner, {
+        recipes: this.state.data.recipes
+      });
+    }
+  }]);
+
+  return App;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+if (document.getElementById('recipe-spinner')) {
+  var data = document.getElementById('recipe-spinner').getAttribute('data');
+  var element = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(App, {
+    data: data
+  });
+  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(element, document.getElementById('recipe-spinner'));
 }
 
 /***/ }),

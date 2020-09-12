@@ -14,3 +14,5 @@ require('./bootstrap');
 
 require('./components/Example');
 require('./components/IngredientList');
+require('./components/RecipeCard');
+require('./components/RecipeCardSpinner');

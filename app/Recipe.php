@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Recipe extends Model
 {
     protected $guarded = [];
+    protected $appends = ['display_image'];
 
     public function user()
     {
