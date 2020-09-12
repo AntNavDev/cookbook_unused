@@ -77116,7 +77116,9 @@ var RecipeCard = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: src,
         alt: this.state.recipe.display_image.name
-      }))));
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "dark-backdrop p-2"
+      }, typeof this.state.recipe.description !== 'undefined' ? this.state.recipe.description : ''))));
     }
   }]);
 

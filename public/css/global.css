@@ -75,6 +75,7 @@ svg.fa-question-circle {
 }
 .homepage-spinner .recipe-spinner-item .card .card-body img {
     max-width: 100%;
+    height: 250px;
 }
 .dz-success-mark,
 .dz-error-mark {
@@ -82,4 +83,19 @@ svg.fa-question-circle {
 }
 .dz-image-preview {
     text-align: center;
+}
+.homepage-spinner .recipe-spinner-item .card .card-body {
+    position: relative;
+}
+.dark-backdrop {
+    height: 35%;
+    opacity: 0.8;
+    background-color: #000;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: #FFF;
+    font-size: 16px;
+    text-transform: capitalize;
 }

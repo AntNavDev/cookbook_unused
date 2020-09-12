@@ -18,6 +18,9 @@ class RecipeCard extends React.Component {
                     </div>
                     <div className="card-body text-center">
                         <img src={src} alt={this.state.recipe.display_image.name} />
+                        <div className="dark-backdrop p-2">
+                            {typeof this.state.recipe.description !== 'undefined' ? this.state.recipe.description : ''}
+                        </div>
                     </div>
                 </div>
             </li>

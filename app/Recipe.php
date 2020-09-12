@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Recipe extends Model
 {
     protected $guarded = [];
-    protected $appends = ['display_image'];
+    protected $appends = ['display_image', 'view_recipe_link'];
 
     public function user()
     {
@@ -17,6 +17,11 @@ class Recipe extends Model
     public function getDisplayImageAttribute()
     {
         return $this->images->first();
+    }
+
+    public function getViewRecipeLinkAttribute()
+    {
+        return route('recipes.single', $this);
     }
 
     public function images()
