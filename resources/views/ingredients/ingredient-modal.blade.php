@@ -39,9 +39,13 @@
         })
         .then(response => response.json())
         .then((data) => {
+            // Temp fix for ingredient update
+            window.location.reload();
+            /*
             console.log(data);
             document.getElementById('ingredient-list').setAttribute('data', JSON.stringify(data.ingredients));
             document.getElementById('close-ingredient-modal').click();
+            */
         });
     });
 </script>
