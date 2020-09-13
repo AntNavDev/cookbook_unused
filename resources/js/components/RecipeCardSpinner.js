@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import RecipeCard from './RecipeCard';
 
 const spinner_length = 5;
+const spinner_speed = 3000;
 
 class RecipeCardSpinner extends React.Component {
     constructor(props){
@@ -17,7 +18,7 @@ class RecipeCardSpinner extends React.Component {
     componentDidMount(){
         this.timerID = setInterval(
             () => this.updateSpinner(),
-            4500
+            spinner_speed
         );
     }
 
@@ -27,9 +28,16 @@ class RecipeCardSpinner extends React.Component {
 
     updateSpinner(){
         this.setState((state, props) => {
-            var updated_array = props.recipes.slice(state.recipe_index, (spinner_length + state.recipe_index));
-            if(updated_array.length < spinner_length){
-                updated_array = updated_array.concat(props.recipes.slice(0, (spinner_length - updated_array.length)));
+            if(props.recipes.length > spinner_length)
+            {
+                var updated_array = props.recipes.slice(state.recipe_index, (spinner_length + state.recipe_index));
+                if(updated_array.length < spinner_length){
+                    updated_array = updated_array.concat(props.recipes.slice(0, (spinner_length - updated_array.length)));
+                }
+            }
+            else
+            {
+                var updated_array = props.recipes;
             }
             var updated_index = state.recipe_index + 1;
             if(updated_index >= props.recipes.length){

@@ -77174,6 +77174,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 var spinner_length = 5;
+var spinner_speed = 3000;
 
 var RecipeCardSpinner = /*#__PURE__*/function (_React$Component) {
   _inherits(RecipeCardSpinner, _React$Component);
@@ -77200,7 +77201,7 @@ var RecipeCardSpinner = /*#__PURE__*/function (_React$Component) {
 
       this.timerID = setInterval(function () {
         return _this2.updateSpinner();
-      }, 4500);
+      }, spinner_speed);
     }
   }, {
     key: "componentWillUnmount",
@@ -77211,10 +77212,14 @@ var RecipeCardSpinner = /*#__PURE__*/function (_React$Component) {
     key: "updateSpinner",
     value: function updateSpinner() {
       this.setState(function (state, props) {
-        var updated_array = props.recipes.slice(state.recipe_index, spinner_length + state.recipe_index);
+        if (props.recipes.length > spinner_length) {
+          var updated_array = props.recipes.slice(state.recipe_index, spinner_length + state.recipe_index);
 
-        if (updated_array.length < spinner_length) {
-          updated_array = updated_array.concat(props.recipes.slice(0, spinner_length - updated_array.length));
+          if (updated_array.length < spinner_length) {
+            updated_array = updated_array.concat(props.recipes.slice(0, spinner_length - updated_array.length));
+          }
+        } else {
+          var updated_array = props.recipes;
         }
 
         var updated_index = state.recipe_index + 1;
