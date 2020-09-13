@@ -77140,11 +77140,13 @@ var RecipeCard = /*#__PURE__*/function (_React$Component) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _RecipeCard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./RecipeCard */ "./resources/js/components/RecipeCard.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _RecipeCard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./RecipeCard */ "./resources/js/components/RecipeCard.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -77166,6 +77168,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -77197,7 +77200,7 @@ var RecipeCardSpinner = /*#__PURE__*/function (_React$Component) {
 
       this.timerID = setInterval(function () {
         return _this2.updateSpinner();
-      }, 5000);
+      }, 4500);
     }
   }, {
     key: "componentWillUnmount",
@@ -77207,19 +77210,19 @@ var RecipeCardSpinner = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "updateSpinner",
     value: function updateSpinner() {
-      var updated_array = this.props.recipes.slice(this.state.recipe_index, spinner_length);
-
-      if (updated_array.length < spinner_length) {
-        updated_array = updated_array.concat(this.props.recipes.slice(0, spinner_length - updated_array.length));
-      }
-
-      var updated_index = this.state.recipe_index + 1;
-
-      if (updated_index >= spinner_length) {
-        updated_index = 0;
-      }
-
       this.setState(function (state, props) {
+        var updated_array = props.recipes.slice(state.recipe_index, spinner_length + state.recipe_index);
+
+        if (updated_array.length < spinner_length) {
+          updated_array = updated_array.concat(props.recipes.slice(0, spinner_length - updated_array.length));
+        }
+
+        var updated_index = state.recipe_index + 1;
+
+        if (updated_index >= props.recipes.length) {
+          updated_index = 0;
+        }
+
         return {
           displayed_recipes: updated_array,
           recipe_index: updated_index
@@ -77230,17 +77233,17 @@ var RecipeCardSpinner = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var spinner = this.state.displayed_recipes.map(function (recipe) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_RecipeCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_RecipeCard__WEBPACK_IMPORTED_MODULE_3__["default"], {
           key: recipe.id,
           recipe: recipe
         });
       });
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, spinner);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", null, spinner);
     }
   }]);
 
   return RecipeCardSpinner;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+}(react__WEBPACK_IMPORTED_MODULE_1___default.a.Component);
 
 var App = /*#__PURE__*/function (_React$Component2) {
   _inherits(App, _React$Component2);
@@ -77262,21 +77265,21 @@ var App = /*#__PURE__*/function (_React$Component2) {
   _createClass(App, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(RecipeCardSpinner, {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(RecipeCardSpinner, {
         recipes: this.state.data.recipes
       });
     }
   }]);
 
   return App;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+}(react__WEBPACK_IMPORTED_MODULE_1___default.a.Component);
 
 if (document.getElementById('recipe-spinner')) {
   var data = document.getElementById('recipe-spinner').getAttribute('data');
-  var element = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(App, {
+  var element = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(App, {
     data: data
   });
-  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(element, document.getElementById('recipe-spinner'));
+  react_dom__WEBPACK_IMPORTED_MODULE_2___default.a.render(element, document.getElementById('recipe-spinner'));
 }
 
 /***/ }),
