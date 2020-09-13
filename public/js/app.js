@@ -77211,28 +77211,26 @@ var RecipeCardSpinner = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "updateSpinner",
     value: function updateSpinner() {
-      this.setState(function (state, props) {
-        if (props.recipes.length > spinner_length) {
+      if (this.props.recipes.length > spinner_length) {
+        this.setState(function (state, props) {
           var updated_array = props.recipes.slice(state.recipe_index, spinner_length + state.recipe_index);
 
           if (updated_array.length < spinner_length) {
             updated_array = updated_array.concat(props.recipes.slice(0, spinner_length - updated_array.length));
           }
-        } else {
-          var updated_array = props.recipes;
-        }
 
-        var updated_index = state.recipe_index + 1;
+          var updated_index = state.recipe_index + 1;
 
-        if (updated_index >= props.recipes.length) {
-          updated_index = 0;
-        }
+          if (updated_index >= props.recipes.length) {
+            updated_index = 0;
+          }
 
-        return {
-          displayed_recipes: updated_array,
-          recipe_index: updated_index
-        };
-      });
+          return {
+            displayed_recipes: updated_array,
+            recipe_index: updated_index
+          };
+        });
+      }
     }
   }, {
     key: "render",
