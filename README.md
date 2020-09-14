@@ -8,6 +8,10 @@ Allows for authenticated users to add their favorite recipes to be viewed by oth
 
 Shows React component 'RecipeCardSpinner'
 
+## Single Recipe Page
+
+Displays a single recipe
+
 ## Recipe Edit Page
 
 Shows React component 'IngredientList'
