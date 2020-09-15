@@ -12,8 +12,8 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-require('./components/Example');
 require('./components/IngredientList');
 require('./components/RecipeCard');
 require('./components/RecipeCardSpinner');
 require('./components/AddIngredient');
+require('./components/AddIngredientForm');

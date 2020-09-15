@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import IngredientList from './IngredientList';
+import AddIngredientForm from './AddIngredientForm';
 
 class AddIngredient extends React.Component {
     constructor(props){
@@ -12,6 +13,7 @@ class AddIngredient extends React.Component {
         return(
             <div>
                 <IngredientList ingredients={this.state.ingredients} />
+                <AddIngredientForm />
             </div>
         );
     }
