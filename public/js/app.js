@@ -77140,29 +77140,42 @@ var ListItem = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      id: _this.props.id,
-      name: _this.props.name
+      ingredient: _this.props.ingredient
     };
     _this.deleteObject = _this.deleteObject.bind(_assertThisInitialized(_this));
+    _this.updateList = _this.props.updateList.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(ListItem, [{
     key: "deleteObject",
-    value: function deleteObject() {// console.log("Delete the resource.");
-      // let object_id = this.state.id;
-      // fetch()
-      // .then()
-      // .then(function(data){
-      //     console.log("data from fetch", data);
-      // });
+    value: function deleteObject() {
+      var _this2 = this;
+
+      var csrfToken = document.querySelector('input[name="_token"]').value;
+      var data = {
+        _token: csrfToken
+      };
+      fetch(this.state.ingredient.delete_link, {
+        method: "DELETE",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      }).then(function (response) {
+        return response.json();
+      }).then(function (data) {
+        console.log("data from fetch", data);
+
+        _this2.updateList(data.ingredients);
+      });
     }
   }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "list-item"
-      }, this.state.name, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__["FontAwesomeIcon"], {
+      }, this.state.ingredient.name, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__["FontAwesomeIcon"], {
         icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faTrash"],
         className: "float-right",
         onClick: this.deleteObject
@@ -77179,29 +77192,21 @@ var IngredientList = /*#__PURE__*/function (_React$Component2) {
   var _super2 = _createSuper(IngredientList);
 
   function IngredientList(props) {
-    var _this2;
+    var _this3;
 
     _classCallCheck(this, IngredientList);
 
-    _this2 = _super2.call(this, props);
-    _this2.state = {
-      ingredients: _this2.props.ingredients
+    _this3 = _super2.call(this, props);
+    _this3.state = {
+      ingredients: _this3.props.ingredients
     };
-    return _this2;
-  } // componentDidMount(){
-  //     setInterval(() => {
-  //         this.setState((state, props) => {
-  //             return { ingredients: props.ingredients }
-  //         });
-  //     }, 500);
-  // }
-
+    _this3.updateList = _this3.updateList.bind(_assertThisInitialized(_this3));
+    return _this3;
+  }
 
   _createClass(IngredientList, [{
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
-      console.log("Update ingredients list...");
-
       if (prevProps.ingredients !== this.props.ingredients) {
         this.setState({
           ingredients: this.props.ingredients
@@ -77209,13 +77214,22 @@ var IngredientList = /*#__PURE__*/function (_React$Component2) {
       }
     }
   }, {
+    key: "updateList",
+    value: function updateList(ingredients) {
+      this.setState({
+        ingredients: ingredients
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this4 = this;
+
       var items = this.state.ingredients.map(function (ingredient) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ListItem, {
           key: ingredient.id,
-          id: ingredient.id,
-          name: ingredient.name
+          ingredient: ingredient,
+          updateList: _this4.updateList
         });
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Ingredients:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {

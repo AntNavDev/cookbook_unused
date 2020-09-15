@@ -38,8 +38,18 @@ class IngredientController extends Controller
         ]);
     }
 
-    public function delete()
+    public function delete(Request $request, Ingredient $ingredient)
     {
-        dd("Delete the ingredient here...");
+        $recipe = $ingredient->recipe;
+        if($recipe && $ingredient->delete())
+        {
+            return response()->json([
+                'success' => true,
+                'ingredients' => $recipe->ingredients,
+            ]);
+        }
+        return response()->json([
+            'success' => false,
+        ]);
     }
 }

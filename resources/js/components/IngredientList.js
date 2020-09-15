@@ -6,27 +6,37 @@ class ListItem extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            id: this.props.id,
-            name: this.props.name
+            ingredient: this.props.ingredient,
         };
 
         this.deleteObject = this.deleteObject.bind(this);
+        this.updateList = this.props.updateList.bind(this);
     }
 
     deleteObject(){
-        // console.log("Delete the resource.");
-        // let object_id = this.state.id;
-        // fetch()
-        // .then()
-        // .then(function(data){
-        //     console.log("data from fetch", data);
-        // });
+        var csrfToken = document.querySelector('input[name="_token"]').value;
+        var data = {
+            _token: csrfToken
+        };
+
+        fetch(this.state.ingredient.delete_link, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then((data) => {
+            console.log("data from fetch", data);
+            this.updateList(data.ingredients);
+        });
     }
 
     render(){
         return(
             <li className="list-item">
-                {this.state.name} <FontAwesomeIcon icon={faTrash} className="float-right" onClick={this.deleteObject} />
+                {this.state.ingredient.name} <FontAwesomeIcon icon={faTrash} className="float-right" onClick={this.deleteObject} />
             </li>
         );
     }
@@ -36,6 +46,8 @@ class IngredientList extends React.Component {
     constructor(props){
         super(props);
         this.state = { ingredients: this.props.ingredients };
+
+        this.updateList = this.updateList.bind(this);
     }
 
     componentDidUpdate(prevProps){
@@ -46,9 +58,15 @@ class IngredientList extends React.Component {
         }
     }
 
+    updateList(ingredients){
+        this.setState({
+            ingredients: ingredients
+        });
+    }
+
     render(){
         const items = this.state.ingredients.map((ingredient) =>
-            <ListItem key={ingredient.id} id={ingredient.id} name={ingredient.name} />
+            <ListItem key={ingredient.id} ingredient={ingredient} updateList={this.updateList} />
         );
 
         return (
