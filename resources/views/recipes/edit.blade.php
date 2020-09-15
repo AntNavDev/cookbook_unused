@@ -16,7 +16,7 @@
 
         <div class="col-md-4">
 
-            <div id="ingredient-list" data="{{ json_encode([ 'ingredients' => $recipe->ingredients ]) }}"></div>
+            <div id="add-ingredient" data="{{ json_encode([ 'ingredients' => $recipe->ingredients ]) }}"></div>
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addIngredientModal">Add an ingredient</button>
         </div>
 

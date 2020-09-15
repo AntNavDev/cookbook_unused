@@ -15,13 +15,13 @@ class ListItem extends React.Component {
     }
 
     deleteObject(){
-        console.log("Delete the resource.");
-        let object_id = this.state.id;
-        fetch()
-        .then()
-        .then(function(data){
-            console.log("data from fetch", data);
-        });
+        // console.log("Delete the resource.");
+        // let object_id = this.state.id;
+        // fetch()
+        // .then()
+        // .then(function(data){
+        //     console.log("data from fetch", data);
+        // });
     }
 
     render(){
@@ -39,19 +39,17 @@ class IngredientList extends React.Component {
         this.state = { ingredients: this.props.ingredients };
     }
 
-    componentDidMount(){
-        console.log("Trigger didMount(update?)");
-        this.setState((state, props) => {
-            ingredients: props.ingredients
-        });
-    }
+    // componentDidMount(){
+    //     this.setState((state, props) => {
+    //         ingredients: props.ingredients
+    //     });
+    // }
 
     render(){
-        console.log("trigger render");
         const items = this.state.ingredients.map((ingredient) =>
             <ListItem key={ingredient.id} id={ingredient.id} name={ingredient.name} />
         );
-        console.log("Ingredients as items: ", items);
+
         return (
             <div>
                 <h3>Ingredients:</h3>
@@ -63,34 +61,4 @@ class IngredientList extends React.Component {
     }
 }
 
-class App extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = { data: JSON.parse(this.props.data) };
-    }
-
-    componentDidMount(){
-        console.log("App has mounted...");
-        this.setState((state, props) => {
-            data: JSON.parse(props.data)
-        });
-    }
-
-    render(){
-        console.log("App is rendering IngredientList...");
-        return (
-            <div>
-                <IngredientList ingredients={this.state.data.ingredients} />
-            </div>
-        );
-    }
-}
-
-if(document.getElementById('ingredient-list')){
-    var data = document.getElementById('ingredient-list').getAttribute('data');
-    const element = <App data={data} />;
-    ReactDOM.render(
-        element,
-        document.getElementById('ingredient-list')
-    );
-}
+export default IngredientList;
