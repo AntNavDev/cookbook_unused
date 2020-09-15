@@ -11,13 +11,27 @@ class AddIngredient extends React.Component {
             formAction: this.props.data.formAction,
             recipeID: this.props.data.recipeID
         };
+
+        this.updateIngredients = this.updateIngredients.bind(this);
+    }
+
+    updateIngredients(ingredients){
+        this.setState({
+            ingredients: ingredients
+        });
     }
 
     render(){
         return(
             <div>
-                <IngredientList ingredients={this.state.ingredients} />
-                <AddIngredientForm formAction={this.state.formAction} recipeID={this.state.recipeID} />
+                <IngredientList
+                    ingredients={this.state.ingredients}
+                    updateIngredients={this.updateIngredients} />
+                <AddIngredientForm
+                    formAction={this.state.formAction}
+                    recipeID={this.state.recipeID}
+                    ingredients={this.state.ingredients}
+                    updateIngredients={this.updateIngredients} />
             </div>
         );
     }

@@ -8,11 +8,13 @@ class AddIngredientForm extends React.Component {
             amount: '',
             custom_weight: '',
             formAction: this.props.formAction,
-            recipeID: this.props.recipeID
+            recipeID: this.props.recipeID,
+            ingredients: this.props.ingredients
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.updateIngredients = this.props.updateIngredients.bind(this);
     }
 
     handleInputChange(event){
@@ -44,7 +46,9 @@ class AddIngredientForm extends React.Component {
             body: JSON.stringify(formData)
         })
         .then(response => response.json())
-        .then(data => console.log("Fetch Successful:", data));
+        .then((data) => {
+            this.updateIngredients(data.ingredients)
+        });
 
     }
 

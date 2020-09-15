@@ -38,11 +38,13 @@ class IngredientList extends React.Component {
         this.state = { ingredients: this.props.ingredients };
     }
 
-    // componentDidMount(){
-    //     this.setState((state, props) => {
-    //         ingredients: props.ingredients
-    //     });
-    // }
+    componentDidUpdate(prevProps){
+        if(prevProps.ingredients !== this.props.ingredients){
+            this.setState({
+                ingredients: this.props.ingredients
+            });
+        }
+    }
 
     render(){
         const items = this.state.ingredients.map((ingredient) =>

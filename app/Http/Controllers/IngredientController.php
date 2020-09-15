@@ -28,7 +28,7 @@ class IngredientController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'Ingredient saved!',
-                'ingredients' => $recipe->ingredients,
+                'ingredients' => $recipe->ingredients->toArray(),
             ]);
         }
 
@@ -36,5 +36,10 @@ class IngredientController extends Controller
             'success' => false,
             'message' => 'Something went wrong...'
         ]);
+    }
+
+    public function delete()
+    {
+        dd("Delete the ingredient here...");
     }
 }
