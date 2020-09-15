@@ -15,8 +15,16 @@
         </div>
 
         <div class="col-md-4">
-
-            <div id="add-ingredient" data="{{ json_encode([ 'ingredients' => $recipe->ingredients ]) }}"></div>
+            @php
+                $add_ingredient_data = [
+                    'recipeID' => $recipe->id,
+                    'ingredients' => $recipe->ingredients,
+                    'formAction' => route('ingredients.store'),
+                ];
+            @endphp
+            {{ csrf_field() }}
+            <div id="add-ingredient"
+                data="{{ json_encode($add_ingredient_data) }}"></div>
             <!-- <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addIngredientModal">Add an ingredient</button> -->
         </div>
 

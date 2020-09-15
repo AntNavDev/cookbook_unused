@@ -76884,7 +76884,9 @@ var AddIngredient = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      ingredients: _this.props.ingredients
+      ingredients: _this.props.data.ingredients,
+      formAction: _this.props.data.formAction,
+      recipeID: _this.props.data.recipeID
     };
     return _this;
   }
@@ -76894,7 +76896,10 @@ var AddIngredient = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_IngredientList__WEBPACK_IMPORTED_MODULE_2__["default"], {
         ingredients: this.state.ingredients
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AddIngredientForm__WEBPACK_IMPORTED_MODULE_3__["default"], null));
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AddIngredientForm__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        formAction: this.state.formAction,
+        recipeID: this.state.recipeID
+      }));
     }
   }]);
 
@@ -76922,7 +76927,7 @@ var App = /*#__PURE__*/function (_React$Component2) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(AddIngredient, {
-        ingredients: this.state.data.ingredients
+        data: this.state.data
       });
     }
   }]);
@@ -76990,7 +76995,10 @@ var AddIngredientForm = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       name: '',
-      amount: ''
+      amount: '',
+      custom_weight: '',
+      formAction: _this.props.formAction,
+      recipeID: _this.props.recipeID
     };
     _this.handleInputChange = _this.handleInputChange.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
@@ -77009,8 +77017,25 @@ var AddIngredientForm = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(event) {
       event.preventDefault();
-      console.log("Submit the form. Name is: ", this.state.name);
-      console.log("The amount is:", this.state.amount);
+      var csrfToken = document.querySelector('input[name="_token"]').value;
+      var formData = {
+        _token: csrfToken,
+        recipe_id: this.state.recipeID,
+        name: this.state.name,
+        amount: this.state.amount,
+        custom_weight: this.state.custom_weight
+      };
+      fetch(this.state.formAction, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      }).then(function (response) {
+        return response.json();
+      }).then(function (data) {
+        return console.log("Fetch Successful:", data);
+      });
     }
   }, {
     key: "render",
@@ -77021,12 +77046,20 @@ var AddIngredientForm = /*#__PURE__*/function (_React$Component) {
         name: "name",
         type: "text",
         value: this.state.name,
-        onChange: this.handleInputChange
+        onChange: this.handleInputChange,
+        required: true
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Amount:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         name: "amount",
         type: "text",
         value: this.state.amount,
-        onChange: this.handleInputChange
+        onChange: this.handleInputChange,
+        required: true
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Custom Weight:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        name: "custom_weight",
+        type: "text",
+        value: this.state.custom_weight,
+        onChange: this.handleInputChange,
+        required: true
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "submit",
         value: "Submit"

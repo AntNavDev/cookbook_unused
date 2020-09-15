@@ -6,14 +6,18 @@ import AddIngredientForm from './AddIngredientForm';
 class AddIngredient extends React.Component {
     constructor(props){
         super(props);
-        this.state = { ingredients: this.props.ingredients };
+        this.state = {
+            ingredients: this.props.data.ingredients,
+            formAction: this.props.data.formAction,
+            recipeID: this.props.data.recipeID
+        };
     }
 
     render(){
         return(
             <div>
                 <IngredientList ingredients={this.state.ingredients} />
-                <AddIngredientForm />
+                <AddIngredientForm formAction={this.state.formAction} recipeID={this.state.recipeID} />
             </div>
         );
     }
@@ -27,7 +31,7 @@ class App extends React.Component {
 
     render(){
         return(
-            <AddIngredient ingredients={this.state.data.ingredients} />
+            <AddIngredient data={this.state.data} />
         );
     }
 }

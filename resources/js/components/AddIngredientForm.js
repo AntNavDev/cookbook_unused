@@ -6,6 +6,9 @@ class AddIngredientForm extends React.Component {
         this.state = {
             name: '',
             amount: '',
+            custom_weight: '',
+            formAction: this.props.formAction,
+            recipeID: this.props.recipeID
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -24,8 +27,25 @@ class AddIngredientForm extends React.Component {
 
     handleSubmit(event){
         event.preventDefault();
-        console.log("Submit the form. Name is: ", this.state.name);
-        console.log("The amount is:", this.state.amount);
+        var csrfToken = document.querySelector('input[name="_token"]').value;
+        var formData = {
+            _token: csrfToken,
+            recipe_id: this.state.recipeID,
+            name: this.state.name,
+            amount: this.state.amount,
+            custom_weight: this.state.custom_weight
+        };
+
+        fetch(this.state.formAction, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => response.json())
+        .then(data => console.log("Fetch Successful:", data));
+
     }
 
     render(){
@@ -34,14 +54,21 @@ class AddIngredientForm extends React.Component {
                 <div>
                     <label>
                         Name:
-                        <input name="name" type="text" value={this.state.name} onChange={this.handleInputChange} />
+                        <input name="name" type="text" value={this.state.name} onChange={this.handleInputChange} required />
                     </label>
                 </div>
 
                 <div>
                     <label>
                         Amount:
-                        <input name="amount" type="text" value={this.state.amount} onChange={this.handleInputChange} />
+                        <input name="amount" type="text" value={this.state.amount} onChange={this.handleInputChange} required />
+                    </label>
+                </div>
+
+                <div>
+                    <label>
+                        Custom Weight:
+                        <input name="custom_weight" type="text" value={this.state.custom_weight} onChange={this.handleInputChange} required />
                     </label>
                 </div>
 
