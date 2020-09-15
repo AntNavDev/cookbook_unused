@@ -76886,9 +76886,11 @@ var AddIngredient = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       ingredients: _this.props.data.ingredients,
       formAction: _this.props.data.formAction,
-      recipeID: _this.props.data.recipeID
+      recipeID: _this.props.data.recipeID,
+      showForm: false
     };
     _this.updateIngredients = _this.updateIngredients.bind(_assertThisInitialized(_this));
+    _this.toggleShowForm = _this.toggleShowForm.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -76900,17 +76902,41 @@ var AddIngredient = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "toggleShowForm",
+    value: function toggleShowForm() {
+      this.setState(function (state, props) {
+        return {
+          showForm: !state.showForm
+        };
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_IngredientList__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      var formElement = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.toggleShowForm
+      }, "Add Ingredient");
+
+      if (this.state.showForm) {
+        formElement = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AddIngredientForm__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          formAction: this.state.formAction,
+          recipeID: this.state.recipeID,
+          ingredients: this.state.ingredients,
+          updateIngredients: this.updateIngredients,
+          toggleShowForm: this.toggleShowForm
+        });
+      }
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-md-6"
+      }, formElement), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-md-6"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_IngredientList__WEBPACK_IMPORTED_MODULE_2__["default"], {
         ingredients: this.state.ingredients,
         updateIngredients: this.updateIngredients
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AddIngredientForm__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        formAction: this.state.formAction,
-        recipeID: this.state.recipeID,
-        ingredients: this.state.ingredients,
-        updateIngredients: this.updateIngredients
-      }));
+      })));
     }
   }]);
 
@@ -77015,6 +77041,7 @@ var AddIngredientForm = /*#__PURE__*/function (_React$Component) {
     _this.handleInputChange = _this.handleInputChange.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.updateIngredients = _this.props.updateIngredients.bind(_assertThisInitialized(_this));
+    _this.toggleShowForm = _this.props.toggleShowForm.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -77050,6 +77077,8 @@ var AddIngredientForm = /*#__PURE__*/function (_React$Component) {
         return response.json();
       }).then(function (data) {
         _this2.updateIngredients(data.ingredients);
+
+        _this2.toggleShowForm();
       });
     }
   }, {

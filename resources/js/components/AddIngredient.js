@@ -9,10 +9,12 @@ class AddIngredient extends React.Component {
         this.state = {
             ingredients: this.props.data.ingredients,
             formAction: this.props.data.formAction,
-            recipeID: this.props.data.recipeID
+            recipeID: this.props.data.recipeID,
+            showForm: false
         };
 
         this.updateIngredients = this.updateIngredients.bind(this);
+        this.toggleShowForm = this.toggleShowForm.bind(this);
     }
 
     updateIngredients(ingredients){
@@ -21,17 +23,32 @@ class AddIngredient extends React.Component {
         });
     }
 
+    toggleShowForm(){
+        this.setState((state, props) => ({
+            showForm: !state.showForm
+        }));
+    }
+
     render(){
+        var formElement = <button onClick={this.toggleShowForm}>Add Ingredient</button>;
+        if(this.state.showForm){
+            formElement = <AddIngredientForm
+                                    formAction={this.state.formAction}
+                                    recipeID={this.state.recipeID}
+                                    ingredients={this.state.ingredients}
+                                    updateIngredients={this.updateIngredients}
+                                    toggleShowForm={this.toggleShowForm} />
+        }
         return(
-            <div>
-                <IngredientList
-                    ingredients={this.state.ingredients}
-                    updateIngredients={this.updateIngredients} />
-                <AddIngredientForm
-                    formAction={this.state.formAction}
-                    recipeID={this.state.recipeID}
-                    ingredients={this.state.ingredients}
-                    updateIngredients={this.updateIngredients} />
+            <div className="row">
+                <div className="col-md-6">
+                    {formElement}
+                </div>
+                <div className="col-md-6">
+                    <IngredientList
+                        ingredients={this.state.ingredients}
+                        updateIngredients={this.updateIngredients} />
+                </div>
             </div>
         );
     }

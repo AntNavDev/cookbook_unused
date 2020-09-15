@@ -15,6 +15,7 @@ class AddIngredientForm extends React.Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.updateIngredients = this.props.updateIngredients.bind(this);
+        this.toggleShowForm = this.props.toggleShowForm.bind(this);
     }
 
     handleInputChange(event){
@@ -48,6 +49,7 @@ class AddIngredientForm extends React.Component {
         .then(response => response.json())
         .then((data) => {
             this.updateIngredients(data.ingredients)
+            this.toggleShowForm();
         });
 
     }
