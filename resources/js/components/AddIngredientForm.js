@@ -5,6 +5,7 @@ class AddIngredientForm extends React.Component {
         super(props);
         this.state = {
             name: '',
+            amount: '',
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -24,15 +25,25 @@ class AddIngredientForm extends React.Component {
     handleSubmit(event){
         event.preventDefault();
         console.log("Submit the form. Name is: ", this.state.name);
+        console.log("The amount is:", this.state.amount);
     }
 
     render(){
         return (
             <form onSubmit={this.handleSubmit}>
-                <label>
-                    Name:
-                    <input name="name" type="text" value={this.state.name} onChange={this.handleInputChange} />
-                </label>
+                <div>
+                    <label>
+                        Name:
+                        <input name="name" type="text" value={this.state.name} onChange={this.handleInputChange} />
+                    </label>
+                </div>
+
+                <div>
+                    <label>
+                        Amount:
+                        <input name="amount" type="text" value={this.state.amount} onChange={this.handleInputChange} />
+                    </label>
+                </div>
 
                 <input type="submit" value="Submit" />
             </form>
