@@ -11,13 +11,13 @@ class InfoMessage extends React.Component {
         };
     }
 
-    // componentDidMount(){
-    //     setInterval(() => {
-    //         this.setState({
-    //             showMessage: false
-    //         });
-    //     }, this.props.messageTimeout);
-    // }
+    componentDidMount(){
+        setInterval(() => {
+            this.setState({
+                showMessage: false
+            });
+        }, this.props.messageTimeout);
+    }
 
     // componentDidUpdate(prevProps){
     //     console.log("Check update:", this.props.messageData);

@@ -77188,24 +77188,28 @@ var InfoMessage = /*#__PURE__*/function (_React$Component) {
       level: _this.props.messageData.level
     };
     return _this;
-  } // componentDidMount(){
-  //     setInterval(() => {
-  //         this.setState({
-  //             showMessage: false
-  //         });
-  //     }, this.props.messageTimeout);
-  // }
-  // componentDidUpdate(prevProps){
-  //     console.log("Check update:", this.props.messageData);
-  //     if(prevProps.showMessage !== this.props.messageData.showMessage){
-  //         this.setState({
-  //             message: this.props.messageData.message
-  //         });
-  //     }
-  // }
-
+  }
 
   _createClass(InfoMessage, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      setInterval(function () {
+        _this2.setState({
+          showMessage: false
+        });
+      }, this.props.messageTimeout);
+    } // componentDidUpdate(prevProps){
+    //     console.log("Check update:", this.props.messageData);
+    //     if(prevProps.showMessage !== this.props.messageData.showMessage){
+    //         this.setState({
+    //             message: this.props.messageData.message
+    //         });
+    //     }
+    // }
+
+  }, {
     key: "render",
     value: function render() {
       var renderedElement = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -77232,15 +77236,15 @@ var App = /*#__PURE__*/function (_React$Component2) {
   var _super2 = _createSuper(App);
 
   function App(props) {
-    var _this2;
+    var _this3;
 
     _classCallCheck(this, App);
 
-    _this2 = _super2.call(this, props);
-    _this2.state = {
-      data: JSON.parse(_this2.props.data)
+    _this3 = _super2.call(this, props);
+    _this3.state = {
+      data: JSON.parse(_this3.props.data)
     };
-    return _this2;
+    return _this3;
   }
 
   _createClass(App, [{
