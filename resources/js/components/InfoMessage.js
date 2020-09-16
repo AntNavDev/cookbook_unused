@@ -31,7 +31,7 @@ class InfoMessage extends React.Component {
     render(){
         var renderedElement = <div className='d-none'></div>;
         if(this.state.showMessage){
-            const messageClasses = this.state.level;
+            const messageClasses = "info-message message-level-" + this.state.level;
             renderedElement = <div className={messageClasses}>{this.state.message}</div>;
         }
         return (
@@ -71,7 +71,6 @@ class App extends React.Component {
 if(document.getElementById('info-message')){
     var target = document.getElementById('info-message');
     var observer = new MutationObserver(function(mutations){
-        console.log("mutated", mutations.type);
         mutations.forEach(function(mutation){
             if(mutation.type === 'attributes'){
                 var data = document.getElementById('info-message').getAttribute('data');

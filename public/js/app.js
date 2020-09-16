@@ -77213,7 +77213,7 @@ var InfoMessage = /*#__PURE__*/function (_React$Component) {
       });
 
       if (this.state.showMessage) {
-        var messageClasses = this.state.level;
+        var messageClasses = "info-message message-level-" + this.state.level;
         renderedElement = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: messageClasses
         }, this.state.message);
@@ -77278,10 +77278,8 @@ var App = /*#__PURE__*/function (_React$Component2) {
 if (document.getElementById('info-message')) {
   var target = document.getElementById('info-message');
   var observer = new MutationObserver(function (mutations) {
-    console.log("mutated", mutations.type);
     mutations.forEach(function (mutation) {
       if (mutation.type === 'attributes') {
-        console.log("can we build a new app element here?");
         var data = document.getElementById('info-message').getAttribute('data');
         var element = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(App, {
           data: data
