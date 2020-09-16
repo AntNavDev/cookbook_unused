@@ -36,7 +36,17 @@ class ListItem extends React.Component {
     render(){
         return(
             <li className="list-item">
-                {this.state.ingredient.name} <FontAwesomeIcon icon={faTrash} className="float-right" onClick={this.deleteObject} />
+                <div className="row">
+                    <div className="col-md-4">
+                        {this.state.ingredient.amount} {this.state.ingredient.weight}
+                    </div>
+                    <div className="col-md-4">
+                        {this.state.ingredient.name}
+                    </div>
+                    <div className="col-md-4">
+                        <FontAwesomeIcon icon={faTrash} className="float-right" onClick={this.deleteObject} />
+                    </div>
+                </div>
             </li>
         );
     }
@@ -72,7 +82,7 @@ class IngredientList extends React.Component {
         return (
             <div>
                 <h3>Ingredients:</h3>
-                <ul className="ingredient-list">
+                <ul className="ingredient-list pl-0">
                     {items}
                 </ul>
             </div>

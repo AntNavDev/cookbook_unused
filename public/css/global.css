@@ -59,10 +59,12 @@ svg.fa-question-circle {
     padding: 5px;
     border-radius: 5px;
 }
-.fa-trash {
+.fa-trash,
+.fa-times {
     color: #990f0a;
 }
-.fa-trash:hover {
+.fa-trash:hover,
+.fa-times:hover {
     cursor: pointer;
 }
 .ingredient-list .list-item {
@@ -83,6 +85,11 @@ svg.fa-question-circle {
 }
 .dz-image-preview {
     text-align: center;
+}
+.dz-image-preview .dz-image img {
+    max-width: 100%;
+    max-height: 300px;
+    padding: 25px;
 }
 .homepage-spinner .recipe-spinner-item .card .card-body {
     position: relative;

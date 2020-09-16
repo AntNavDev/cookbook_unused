@@ -1,4 +1,6 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 class AddIngredientForm extends React.Component {
     constructor(props){
@@ -56,30 +58,33 @@ class AddIngredientForm extends React.Component {
 
     render(){
         return (
-            <form onSubmit={this.handleSubmit}>
-                <div>
-                    <label>
-                        Name:
-                        <input name="name" type="text" value={this.state.name} onChange={this.handleInputChange} required />
-                    </label>
-                </div>
+            <div className="d-inline-flex">
+                <FontAwesomeIcon className="mx-2 mt-1" icon={faTimes} onClick={this.toggleShowForm} />
+                <form onSubmit={this.handleSubmit}>
+                    <div>
+                        <label>
+                            Name:
+                            <input name="name" type="text" className="form-control" value={this.state.name} onChange={this.handleInputChange} required />
+                        </label>
+                    </div>
 
-                <div>
-                    <label>
-                        Amount:
-                        <input name="amount" type="text" value={this.state.amount} onChange={this.handleInputChange} required />
-                    </label>
-                </div>
+                    <div>
+                        <label>
+                            Amount:
+                            <input name="amount" type="text" className="form-control" value={this.state.amount} onChange={this.handleInputChange} required />
+                        </label>
+                    </div>
 
-                <div>
-                    <label>
-                        Custom Weight:
-                        <input name="custom_weight" type="text" value={this.state.custom_weight} onChange={this.handleInputChange} required />
-                    </label>
-                </div>
+                    <div>
+                        <label>
+                            Custom Weight:
+                            <input name="custom_weight" type="text" className="form-control" value={this.state.custom_weight} onChange={this.handleInputChange} required />
+                        </label>
+                    </div>
 
-                <input type="submit" value="Submit" />
-            </form>
+                    <input type="submit" value="Submit" />
+                </form>
+            </div>
         );
     }
 }

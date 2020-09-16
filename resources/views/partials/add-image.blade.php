@@ -1,7 +1,7 @@
 <div class="photo-cont">
     <div id="image_dropzone">
         <div class="action-image">
-            Drag and drop images here!
+            Click or drag and drop images here!
         </div>
     </div>
     <p>{{ isset($prompt) ? $prompt : '' }}</p>

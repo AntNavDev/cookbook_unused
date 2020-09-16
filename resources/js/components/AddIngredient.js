@@ -33,21 +33,21 @@ class AddIngredient extends React.Component {
         var formElement = <button onClick={this.toggleShowForm}>Add Ingredient</button>;
         if(this.state.showForm){
             formElement = <AddIngredientForm
-                                    formAction={this.state.formAction}
-                                    recipeID={this.state.recipeID}
-                                    ingredients={this.state.ingredients}
-                                    updateIngredients={this.updateIngredients}
-                                    toggleShowForm={this.toggleShowForm} />
+                            formAction={this.state.formAction}
+                            recipeID={this.state.recipeID}
+                            ingredients={this.state.ingredients}
+                            updateIngredients={this.updateIngredients}
+                            toggleShowForm={this.toggleShowForm} />
         }
         return(
             <div className="row">
                 <div className="col-md-6">
-                    {formElement}
-                </div>
-                <div className="col-md-6">
                     <IngredientList
                         ingredients={this.state.ingredients}
                         updateIngredients={this.updateIngredients} />
+                </div>
+                <div className="col-md-6 float-right">
+                    {formElement}
                 </div>
             </div>
         );

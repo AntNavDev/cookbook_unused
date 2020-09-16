@@ -7,14 +7,8 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6">
             <h2>{{ $recipe->name }}</h2>
-            <div class="preview-container">
-                <img id="display-image" src="{{ $recipe->display_image ? Storage::url($recipe->display_image->image_path) : asset('images/plate-fork-knife.jpg') }}" height="200" width="200" />
-            </div>
-        </div>
-
-        <div class="col-md-4">
             @php
                 $add_ingredient_data = [
                     'recipeID' => $recipe->id,
@@ -28,7 +22,7 @@
             <!-- <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addIngredientModal">Add an ingredient</button> -->
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="food-photo">
                 <div class="invalid-msg hide">Invalid entry.</div>
                 @include('partials.add-image')
@@ -65,13 +59,20 @@
                 });
             },
             success: function(file, response){
-                if(typeof response.image_path !== 'undefined')
-                {
-                    this.removeAllFiles();
-                    document.getElementById('display-image').setAttribute('src', response.image_path);
-                }
+                //
             }
         });
+
+        @if($recipe->display_image)
+            // Create the mock file for our upload pic if it exists:
+            var mockFile = { name: "Filename", size: 123 };
+            var image_path = "{{ Storage::url($recipe->display_image->image_path) }}";
+            // Call the default addedfile event handler
+            myDropzone.emit("addedfile", mockFile);
+            myDropzone.files.push(mockFile);
+            // And optionally show the thumbnail of the file:
+            myDropzone.emit("thumbnail", mockFile, image_path);
+        @endif
 
         document.getElementById("submit-image-btn").addEventListener("click", function () {
             if (myDropzone.files.length == 0){
