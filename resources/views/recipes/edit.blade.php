@@ -19,7 +19,6 @@
             {{ csrf_field() }}
             <div id="add-ingredient"
                 data="{{ json_encode($add_ingredient_data) }}"></div>
-            <!-- <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addIngredientModal">Add an ingredient</button> -->
         </div>
 
         <div class="col-md-6">
@@ -30,10 +29,6 @@
         </div>
     </div>
 
-@endsection
-
-@section('modals')
-    @include('ingredients.ingredient-modal', [ 'recipe_id' => $recipe->id ])
 @endsection
 
 @push('scripts')
@@ -59,7 +54,13 @@
                 });
             },
             success: function(file, response){
-                //
+                var messageData = {
+                    showMessage: true,
+                    message: 'Test Message',
+                    level: 'success'
+                };
+
+                document.getElementById('info-message').setAttribute('data', JSON.stringify(messageData));
             }
         });
 

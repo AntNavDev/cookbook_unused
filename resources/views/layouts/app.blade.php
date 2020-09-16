@@ -41,6 +41,8 @@
             </div>
         @endif
 
+        <div id="info-message"></div>
+
         <main class="p-4">
             @yield('content')
         </main>
