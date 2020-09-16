@@ -77187,6 +77187,7 @@ var InfoMessage = /*#__PURE__*/function (_React$Component) {
       showMessage: _this.props.messageData.showMessage,
       level: _this.props.messageData.level
     };
+    _this.resetData = _this.props.resetData.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -77195,10 +77196,14 @@ var InfoMessage = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      setInterval(function () {
+      setTimeout(function () {
         _this2.setState({
           showMessage: false
         });
+
+        console.log("Resetting data in infomessage component");
+
+        _this2.resetData();
       }, this.props.messageTimeout);
     } // componentDidUpdate(prevProps){
     //     console.log("Check update:", this.props.messageData);
@@ -77244,19 +77249,29 @@ var App = /*#__PURE__*/function (_React$Component2) {
     _this3.state = {
       data: JSON.parse(_this3.props.data)
     };
+    _this3.resetData = _this3.resetData.bind(_assertThisInitialized(_this3));
     return _this3;
   }
 
   _createClass(App, [{
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
-      console.log("Check update:", this.props.data);
+      console.log("Check update prevProps:", prevProps.data);
+      console.log("this.state.data:", this.state.data);
+      console.log("this.props.data", this.props.data);
 
-      if (prevProps.data.showMessage !== this.props.data.showMessage) {
+      if (prevProps.data !== this.state.data) {
         this.setState({
           data: this.props.data
         });
       }
+    }
+  }, {
+    key: "resetData",
+    value: function resetData() {
+      this.setState({
+        data: {}
+      });
     }
   }, {
     key: "render",
@@ -77268,7 +77283,8 @@ var App = /*#__PURE__*/function (_React$Component2) {
       if (this.props.data) {
         rendered = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(InfoMessage, {
           messageData: this.state.data,
-          messageTimeout: 3000
+          messageTimeout: 3000,
+          resetData: this.resetData
         });
       }
 

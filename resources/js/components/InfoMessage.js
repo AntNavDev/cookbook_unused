@@ -9,13 +9,17 @@ class InfoMessage extends React.Component {
             showMessage: this.props.messageData.showMessage,
             level: this.props.messageData.level,
         };
+
+        this.resetData = this.props.resetData.bind(this);
     }
 
     componentDidMount(){
-        setInterval(() => {
+        setTimeout(() => {
             this.setState({
                 showMessage: false
             });
+            console.log("Resetting data in infomessage component");
+            this.resetData();
         }, this.props.messageTimeout);
     }
 
@@ -46,21 +50,34 @@ class App extends React.Component {
         this.state = {
             data: JSON.parse(this.props.data)
         };
+
+        this.resetData = this.resetData.bind(this);
     }
 
     componentDidUpdate(prevProps){
-        console.log("Check update:", this.props.data);
-        if(prevProps.data.showMessage !== this.props.data.showMessage){
+        console.log("Check update prevProps:", prevProps.data);
+        console.log("this.state.data:", this.state.data);
+        console.log("this.props.data", this.props.data);
+        if(prevProps.data !== this.state.data){
             this.setState({
                 data: this.props.data
             });
         }
     }
 
+    resetData(){
+        this.setState({
+            data: {}
+        });
+    }
+
     render(){
         var rendered = <div className="d-none"></div>;
         if(this.props.data){
-            rendered = <InfoMessage messageData={this.state.data} messageTimeout={3000} />;
+            rendered = <InfoMessage
+                            messageData={this.state.data}
+                            messageTimeout={3000}
+                            resetData={this.resetData} />;
         }
         return (
             rendered
