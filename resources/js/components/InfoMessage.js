@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDom from 'react-dom';
+import ReactDOM from 'react-dom';
 
 class InfoMessage extends React.Component {
     constructor(props){
@@ -7,7 +7,7 @@ class InfoMessage extends React.Component {
         this.state = {
             message: this.props.messageData.message,
             showMessage: this.props.messageData.showMessage,
-            level: this.props.messageData.level,
+            level: this.props.messageData.level
         };
 
         this.resetData = this.props.resetData.bind(this);
@@ -18,8 +18,9 @@ class InfoMessage extends React.Component {
             this.setState({
                 showMessage: false
             });
-            console.log("Resetting data in infomessage component");
+
             this.resetData();
+            // document.getElementById('info-message').setAttribute('data', JSON.stringify({}));
         }, this.props.messageTimeout);
     }
 
@@ -48,16 +49,15 @@ class App extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            data: JSON.parse(this.props.data)
+            data: JSON.parse(this.props.data),
+            isApp: true,
+            childKey: 0,
         };
 
         this.resetData = this.resetData.bind(this);
     }
 
     componentDidUpdate(prevProps){
-        console.log("Check update prevProps:", prevProps.data);
-        console.log("this.state.data:", this.state.data);
-        console.log("this.props.data", this.props.data);
         if(prevProps.data !== this.state.data){
             this.setState({
                 data: this.props.data
@@ -65,20 +65,29 @@ class App extends React.Component {
         }
     }
 
-    resetData(){
-        this.setState({
-            data: {}
+    componentDidMount(){
+        this.setState((state, props) => {
+            childKey: (state.childKey + 1)
         });
     }
 
+    resetData(){
+        // this.setState({
+        //     data: {}
+        // });
+        console.log("Find node:", ReactDOM.findDOMNode(this));
+        // ReactDOM.unmountComponentAtNode(ReactDOM.findDOMNode(this));
+    }
+
     render(){
-        var rendered = <div className="d-none"></div>;
-        if(this.props.data){
-            rendered = <InfoMessage
+        // var rendered = <div className="d-none"></div>;
+        // if(this.props.data){
+            var rendered = <InfoMessage
+                            key={this.state.childKey}
                             messageData={this.state.data}
                             messageTimeout={3000}
                             resetData={this.resetData} />;
-        }
+        // }
         return (
             rendered
         );
@@ -92,7 +101,7 @@ if(document.getElementById('info-message')){
             if(mutation.type === 'attributes'){
                 var data = document.getElementById('info-message').getAttribute('data');
                 const element = <App data={data} />;
-                ReactDom.render(
+                ReactDOM.render(
                     element,
                     document.getElementById('info-message')
                 );

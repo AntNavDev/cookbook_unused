@@ -77201,9 +77201,8 @@ var InfoMessage = /*#__PURE__*/function (_React$Component) {
           showMessage: false
         });
 
-        console.log("Resetting data in infomessage component");
+        _this2.resetData(); // document.getElementById('info-message').setAttribute('data', JSON.stringify({}));
 
-        _this2.resetData();
       }, this.props.messageTimeout);
     } // componentDidUpdate(prevProps){
     //     console.log("Check update:", this.props.messageData);
@@ -77247,7 +77246,9 @@ var App = /*#__PURE__*/function (_React$Component2) {
 
     _this3 = _super2.call(this, props);
     _this3.state = {
-      data: JSON.parse(_this3.props.data)
+      data: JSON.parse(_this3.props.data),
+      isApp: true,
+      childKey: 0
     };
     _this3.resetData = _this3.resetData.bind(_assertThisInitialized(_this3));
     return _this3;
@@ -77256,10 +77257,6 @@ var App = /*#__PURE__*/function (_React$Component2) {
   _createClass(App, [{
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
-      console.log("Check update prevProps:", prevProps.data);
-      console.log("this.state.data:", this.state.data);
-      console.log("this.props.data", this.props.data);
-
       if (prevProps.data !== this.state.data) {
         this.setState({
           data: this.props.data
@@ -77267,26 +77264,31 @@ var App = /*#__PURE__*/function (_React$Component2) {
       }
     }
   }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.setState(function (state, props) {
+        childKey: state.childKey + 1;
+      });
+    }
+  }, {
     key: "resetData",
     value: function resetData() {
-      this.setState({
-        data: {}
-      });
+      // this.setState({
+      //     data: {}
+      // });
+      console.log("Find node:", react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.findDOMNode(this)); // ReactDOM.unmountComponentAtNode(ReactDOM.findDOMNode(this));
     }
   }, {
     key: "render",
     value: function render() {
-      var rendered = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "d-none"
-      });
-
-      if (this.props.data) {
-        rendered = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(InfoMessage, {
-          messageData: this.state.data,
-          messageTimeout: 3000,
-          resetData: this.resetData
-        });
-      }
+      // var rendered = <div className="d-none"></div>;
+      // if(this.props.data){
+      var rendered = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(InfoMessage, {
+        key: this.state.childKey,
+        messageData: this.state.data,
+        messageTimeout: 3000,
+        resetData: this.resetData
+      }); // }
 
       return rendered;
     }
