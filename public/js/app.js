@@ -77170,6 +77170,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+var messageContainer = document.getElementById('info-message');
 
 var InfoMessage = /*#__PURE__*/function (_React$Component) {
   _inherits(InfoMessage, _React$Component);
@@ -77184,50 +77185,18 @@ var InfoMessage = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       message: _this.props.messageData.message,
-      showMessage: _this.props.messageData.showMessage,
       level: _this.props.messageData.level
     };
-    _this.resetData = _this.props.resetData.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(InfoMessage, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      setTimeout(function () {
-        _this2.setState({
-          showMessage: false
-        });
-
-        _this2.resetData(); // document.getElementById('info-message').setAttribute('data', JSON.stringify({}));
-
-      }, this.props.messageTimeout);
-    } // componentDidUpdate(prevProps){
-    //     console.log("Check update:", this.props.messageData);
-    //     if(prevProps.showMessage !== this.props.messageData.showMessage){
-    //         this.setState({
-    //             message: this.props.messageData.message
-    //         });
-    //     }
-    // }
-
-  }, {
     key: "render",
     value: function render() {
-      var renderedElement = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "d-none"
-      });
-
-      if (this.state.showMessage) {
-        var messageClasses = "info-message message-level-" + this.state.level;
-        renderedElement = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: messageClasses
-        }, this.state.message);
-      }
-
-      return renderedElement;
+      var messageClasses = "info-message message-level-" + this.state.level;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: messageClasses
+      }, this.state.message);
     }
   }]);
 
@@ -77240,77 +77209,50 @@ var App = /*#__PURE__*/function (_React$Component2) {
   var _super2 = _createSuper(App);
 
   function App(props) {
-    var _this3;
+    var _this2;
 
     _classCallCheck(this, App);
 
-    _this3 = _super2.call(this, props);
-    _this3.state = {
-      data: JSON.parse(_this3.props.data),
-      isApp: true,
-      childKey: 0
+    _this2 = _super2.call(this, props);
+    _this2.state = {
+      data: JSON.parse(_this2.props.data),
+      messageTimeout: _this2.props.data.messageTimeout ? _this2.props.data.messageTimeout : 3000
     };
-    _this3.resetData = _this3.resetData.bind(_assertThisInitialized(_this3));
-    return _this3;
+    return _this2;
   }
 
   _createClass(App, [{
-    key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps) {
-      if (prevProps.data !== this.state.data) {
-        this.setState({
-          data: this.props.data
-        });
-      }
-    }
-  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.setState(function (state, props) {
-        childKey: state.childKey + 1;
-      });
-    }
-  }, {
-    key: "resetData",
-    value: function resetData() {
-      // this.setState({
-      //     data: {}
-      // });
-      console.log("Find node:", react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.findDOMNode(this)); // ReactDOM.unmountComponentAtNode(ReactDOM.findDOMNode(this));
+      setTimeout(function () {
+        react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.unmountComponentAtNode(react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.findDOMNode(messageContainer));
+      }, this.state.messageTimeout);
     }
   }, {
     key: "render",
     value: function render() {
-      // var rendered = <div className="d-none"></div>;
-      // if(this.props.data){
-      var rendered = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(InfoMessage, {
-        key: this.state.childKey,
-        messageData: this.state.data,
-        messageTimeout: 3000,
-        resetData: this.resetData
-      }); // }
-
-      return rendered;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(InfoMessage, {
+        messageData: this.state.data
+      });
     }
   }]);
 
   return App;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-if (document.getElementById('info-message')) {
-  var target = document.getElementById('info-message');
+if (messageContainer) {
   var observer = new MutationObserver(function (mutations) {
     mutations.forEach(function (mutation) {
       if (mutation.type === 'attributes') {
-        var data = document.getElementById('info-message').getAttribute('data');
+        var data = messageContainer.getAttribute('data');
         var element = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(App, {
           data: data
         });
-        react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(element, document.getElementById('info-message'));
+        react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(element, messageContainer);
       }
     });
   });
-  observer.observe(target, {
+  observer.observe(messageContainer, {
     attributes: true
   });
 }

@@ -56,7 +56,7 @@
             success: function(file, response){
                 var messageData = {
                     showMessage: true,
-                    message: 'Test Message',
+                    message: 'Image Uploaded!',
                     level: 'success'
                 };
 
