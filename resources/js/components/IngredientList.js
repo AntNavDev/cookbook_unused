@@ -89,7 +89,7 @@ class IngredientList extends React.Component {
 
     render(){
         const items = this.state.ingredients.map((ingredient) =>
-            <ListItem key={ingredient.id} ingredient={ingredient} updateList={this.updateList} canDelete={true} />
+            <ListItem key={ingredient.id} ingredient={ingredient} updateList={this.updateList} canDelete={this.props.canDeleteItems} />
         );
 
         return (

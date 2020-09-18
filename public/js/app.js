@@ -76919,7 +76919,7 @@ var AddIngredient = /*#__PURE__*/function (_React$Component) {
         onClick: this.toggleShowForm
       }, "Add Ingredient");
 
-      if (this.state.showForm) {
+      if (this.state.showForm && this.props.canAdd) {
         formElement = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AddIngredientForm__WEBPACK_IMPORTED_MODULE_3__["default"], {
           formAction: this.state.formAction,
           recipeID: this.state.recipeID,
@@ -76935,7 +76935,8 @@ var AddIngredient = /*#__PURE__*/function (_React$Component) {
         className: "col-md-6"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_IngredientList__WEBPACK_IMPORTED_MODULE_2__["default"], {
         ingredients: this.state.ingredients,
-        updateIngredients: this.updateIngredients
+        updateIngredients: this.updateIngredients,
+        canDeleteItems: this.props.canDeleteItems
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-md-6 float-right"
       }, formElement));
@@ -76966,7 +76967,9 @@ var App = /*#__PURE__*/function (_React$Component2) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(AddIngredient, {
-        data: this.state.data
+        data: this.state.data,
+        canAdd: true,
+        canDeleteItems: this.state.data.canDeleteItems
       });
     }
   }]);
@@ -77437,7 +77440,7 @@ var IngredientList = /*#__PURE__*/function (_React$Component2) {
           key: ingredient.id,
           ingredient: ingredient,
           updateList: _this4.updateList,
-          canDelete: true
+          canDelete: _this4.props.canDeleteItems
         });
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Ingredients:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
