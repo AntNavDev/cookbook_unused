@@ -3,7 +3,11 @@
 @section('content')
     <div class="row">
         <div class="col-md-4">
-            <a href="{{ route('recipes.edit', [$recipe]) }}">Edit {{ $recipe->name }}</a>
+            @auth
+                @if(in_array($recipe->id, auth()->user()->recipes()->pluck('id')->toArray()))
+                    <a href="{{ route('recipes.edit', [$recipe]) }}">Edit {{ $recipe->name }}</a>
+                @endif
+            @endauth
         </div>
         <div class="col-md-8">
             @if($recipe->display_image)
