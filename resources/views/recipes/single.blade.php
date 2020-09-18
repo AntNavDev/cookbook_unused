@@ -3,11 +3,9 @@
 @section('content')
     <div class="row">
         <div class="col-md-4">
-            @auth
-                @if(in_array($recipe->id, auth()->user()->recipes()->pluck('id')->toArray()))
+                @if(auth()->user() && auth()->user()->recipes->contains($recipe))
                     <a href="{{ route('recipes.edit', [$recipe]) }}">Edit {{ $recipe->name }}</a>
                 @endif
-            @endauth
         </div>
         <div class="col-md-8">
             @if($recipe->display_image)

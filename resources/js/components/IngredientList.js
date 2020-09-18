@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { messageContainer } from './../globals.js';
 
 class ListItem extends React.Component {
     constructor(props){
@@ -28,12 +29,24 @@ class ListItem extends React.Component {
         })
         .then(response => response.json())
         .then((data) => {
-            console.log("data from fetch", data);
-            this.updateList(data.ingredients);
+            var messageData = {
+                message: data.message
+            };
+
+            if(data.success){
+                this.updateList(data.ingredients);
+                messageData.level = 'success';
+            }
+            else{
+                messageData.level = 'error';
+            }
+
+            messageContainer.setAttribute('data', JSON.stringify(messageData));
         });
     }
 
     render(){
+        var delete_icon = this.props.canDelete ? <FontAwesomeIcon icon={faTrash} className="float-right" onClick={this.deleteObject} /> : '';
         return(
             <li className="list-item">
                 <div className="row">
@@ -44,7 +57,7 @@ class ListItem extends React.Component {
                         {this.state.ingredient.name}
                     </div>
                     <div className="col-md-4">
-                        <FontAwesomeIcon icon={faTrash} className="float-right" onClick={this.deleteObject} />
+                        {delete_icon}
                     </div>
                 </div>
             </li>
@@ -76,7 +89,7 @@ class IngredientList extends React.Component {
 
     render(){
         const items = this.state.ingredients.map((ingredient) =>
-            <ListItem key={ingredient.id} ingredient={ingredient} updateList={this.updateList} />
+            <ListItem key={ingredient.id} ingredient={ingredient} updateList={this.updateList} canDelete={true} />
         );
 
         return (

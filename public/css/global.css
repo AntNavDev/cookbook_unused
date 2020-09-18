@@ -121,3 +121,7 @@ svg.fa-question-circle {
     background-color: #00AA00;
     color: #FFF;
 }
+.info-message.message-level-error {
+    background-color: #d84d4d;
+    color: #FFF;
+}

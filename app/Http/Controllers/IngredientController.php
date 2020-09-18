@@ -23,13 +23,16 @@ class IngredientController extends Controller
 
             $ingredient = Ingredient::create($request->all());
 
-            $recipe->ingredients()->save($ingredient);
+            $user = auth()->user();
+            if($user && $recipe && $user->recipes->contains($recipe) && $recipe->ingredients()->save($ingredient))
+            {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Ingredient saved!',
+                    'ingredients' => $recipe->ingredients->toArray(),
+                ]);
 
-            return response()->json([
-                'success' => true,
-                'message' => 'Ingredient saved!',
-                'ingredients' => $recipe->ingredients->toArray(),
-            ]);
+            }
         }
 
         return response()->json([
@@ -41,15 +44,19 @@ class IngredientController extends Controller
     public function delete(Request $request, Ingredient $ingredient)
     {
         $recipe = $ingredient->recipe;
-        if($recipe && $ingredient->delete())
+        $user = auth()->user();
+        if($user && $recipe && $user->recipes->contains($recipe) && $ingredient->delete())
         {
             return response()->json([
                 'success' => true,
                 'ingredients' => $recipe->ingredients,
+                'message' => 'Ingredient Deleted!'
             ]);
         }
         return response()->json([
             'success' => false,
+            'ingredients' => $recipe->ingredients,
+            'message' => 'Something went wrong. Ingredient not deleted.',
         ]);
     }
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { messageContainer } from './../globals.js';
 
 class AddIngredientForm extends React.Component {
     constructor(props){
@@ -52,6 +53,19 @@ class AddIngredientForm extends React.Component {
         .then((data) => {
             this.updateIngredients(data.ingredients)
             this.toggleShowForm();
+
+            var messageData = {
+                message: data.message
+            };
+
+            if(data.success){
+                messageData.level = 'success';
+            }
+            else{
+                messageData.level = 'error';
+            }
+
+            messageContainer.setAttribute('data', JSON.stringify(messageData));
         });
 
     }
