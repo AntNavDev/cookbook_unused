@@ -76915,18 +76915,22 @@ var AddIngredient = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var formElement = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: this.toggleShowForm
-      }, "Add Ingredient");
+      var formElement = '';
 
-      if (this.state.showForm && this.props.canAdd) {
-        formElement = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AddIngredientForm__WEBPACK_IMPORTED_MODULE_3__["default"], {
-          formAction: this.state.formAction,
-          recipeID: this.state.recipeID,
-          ingredients: this.state.ingredients,
-          updateIngredients: this.updateIngredients,
-          toggleShowForm: this.toggleShowForm
-        });
+      if (this.props.canAddItems) {
+        formElement = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: this.toggleShowForm
+        }, "Add Ingredient");
+
+        if (this.state.showForm) {
+          formElement = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AddIngredientForm__WEBPACK_IMPORTED_MODULE_3__["default"], {
+            formAction: this.state.formAction,
+            recipeID: this.state.recipeID,
+            ingredients: this.state.ingredients,
+            updateIngredients: this.updateIngredients,
+            toggleShowForm: this.toggleShowForm
+          });
+        }
       }
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -76968,8 +76972,8 @@ var App = /*#__PURE__*/function (_React$Component2) {
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(AddIngredient, {
         data: this.state.data,
-        canAdd: true,
-        canDeleteItems: this.state.data.canDeleteItems
+        canAddItems: this.state.data.canAlterItems,
+        canDeleteItems: this.state.data.canAlterItems
       });
     }
   }]);
@@ -77702,14 +77706,6 @@ if (document.getElementById('recipe-spinner')) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// class Globals {
-//     constructor(){
-//         this.messageContainer = document.getElementById('info-message');
-//     }
-//     get messageContainer(){
-//         return this.messageContainer;
-//     }
-// }
 var messageContainer = document.getElementById('info-message');
 module.exports = {
   messageContainer: messageContainer

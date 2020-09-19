@@ -30,14 +30,18 @@ class AddIngredient extends React.Component {
     }
 
     render(){
-        var formElement = <button onClick={this.toggleShowForm}>Add Ingredient</button>;
-        if(this.state.showForm && this.props.canAdd){
-            formElement = <AddIngredientForm
-                            formAction={this.state.formAction}
-                            recipeID={this.state.recipeID}
-                            ingredients={this.state.ingredients}
-                            updateIngredients={this.updateIngredients}
-                            toggleShowForm={this.toggleShowForm} />
+        var formElement = '';
+        if(this.props.canAddItems)
+        {
+            formElement = <button onClick={this.toggleShowForm}>Add Ingredient</button>;
+            if(this.state.showForm){
+                formElement = <AddIngredientForm
+                                formAction={this.state.formAction}
+                                recipeID={this.state.recipeID}
+                                ingredients={this.state.ingredients}
+                                updateIngredients={this.updateIngredients}
+                                toggleShowForm={this.toggleShowForm} />
+            }
         }
         return(
             <div className="row">
@@ -63,7 +67,10 @@ class App extends React.Component {
 
     render(){
         return(
-            <AddIngredient data={this.state.data} canAdd={true} canDeleteItems={this.state.data.canDeleteItems} />
+            <AddIngredient
+                data={this.state.data}
+                canAddItems={this.state.data.canAlterItems}
+                canDeleteItems={this.state.data.canAlterItems} />
         );
     }
 }

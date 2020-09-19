@@ -14,7 +14,7 @@
                     'recipeID' => $recipe->id,
                     'ingredients' => $recipe->ingredients,
                     'formAction' => route('ingredients.store'),
-                    'canDeleteItems' => auth()->user()->recipes->contains($recipe),
+                    'canAlterItems' => auth()->user()->recipes->contains($recipe),
                 ];
             @endphp
             {{ csrf_field() }}
