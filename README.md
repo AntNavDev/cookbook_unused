@@ -18,4 +18,4 @@ Displays a single recipe
 
 ## Recipe Edit Page
 
-Shows React component 'IngredientList', 'IngredientAdd'
+Shows React component 'IngredientList', 'IngredientAdd'.
