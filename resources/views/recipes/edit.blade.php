@@ -34,6 +34,7 @@
 
 @push('scripts')
 <script>
+    var delete_image_route = '{{ isset($recipe->display_image) ? route("images.destroy", $recipe->display_image) : "" }}';
     document.addEventListener("DOMContentLoaded", function(){
         var myDropzone = new Dropzone('#image_dropzone', {
             addRemoveLinks: true,
@@ -56,7 +57,7 @@
 
                 this.on('removedfile', function(){
                     @if($recipe->display_image)
-                        fetch('{{ route("images.destroy", $recipe->display_image) }}', {
+                        fetch(delete_image_route, {
                             method: 'DELETE',
                             headers: {
                                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
@@ -83,7 +84,7 @@
                     message: 'Image Uploaded!',
                     level: 'success'
                 };
-
+                delete_image_route = response.delete_image_link;
                 document.getElementById('info-message').setAttribute('data', JSON.stringify(messageData));
             }
         });

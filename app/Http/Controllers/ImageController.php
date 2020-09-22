@@ -40,6 +40,7 @@ class ImageController extends Controller
                     return response()->json([
                         'success' => true,
                         'image_path' => Storage::url('images/' . $filename),
+                        'delete_image_path' => route('images.destroy', $user_image)
                     ]);
                 }
             }
