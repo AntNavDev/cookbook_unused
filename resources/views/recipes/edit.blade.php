@@ -53,6 +53,30 @@
                     this.removeAllFiles();
                     this.addFile(file);
                 });
+
+                this.on('removedfile', function(){
+                    @if($recipe->display_image)
+                        fetch('{{ route("images.destroy", $recipe->display_image) }}', {
+                            method: 'DELETE',
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                            },
+                        })
+                        .then(response => response.json())
+                        .then((data) => {
+                            console.log("Data:", data);
+                            if(data.success)
+                            {
+                                var messageData = {
+                                    message: 'Image Deleted!',
+                                    level: 'success'
+                                };
+
+                                document.getElementById('info-message').setAttribute('data', JSON.stringify(messageData));
+                            }
+                        });
+                    @endif
+                });
             },
             success: function(file, response){
                 var messageData = {

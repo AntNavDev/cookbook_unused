@@ -49,4 +49,22 @@ class ImageController extends Controller
             'success' => false,
         ]);
     }
+
+    public function destroy(Request $request, Image $image)
+    {
+        $image_path = public_path('storage/' . $image->image_path);
+
+        if($image->delete())
+        {
+            unlink($image_path);
+
+            return response()->json([
+                'success' => true,
+            ]);
+        }
+
+        return response()->json([
+            'success' => false,
+        ]);
+    }
 }
