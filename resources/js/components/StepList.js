@@ -11,14 +11,15 @@ class StepList extends React.Component {
     }
 
     render(){
-        const step_list = this.state.steps.map((step) =>
-            <Step key={step.id} data={{ name: step.name }} />
+        const items = this.state.steps.map((step) =>
+            <li key={step.id}><Step data={{ name: step.name }} /></li>
         );
 
         return(
             <div>
-                <ul>
-                    {step_list}
+                <h3>Steps</h3>
+                <ul className="step-list pl-0">
+                    {items}
                 </ul>
             </div>
         );

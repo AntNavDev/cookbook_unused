@@ -1,22 +1,35 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import StepList from './StepList';
+import StepCarousel from './StepCarousel';
 
 class AddStep extends React.Component {
     constructor(props){
         super(props);
 
         this.state = {
-            steps: this.props.data.steps
+            steps: this.props.data.steps,
+            user_view: 'StepCarousel',
         };
     }
 
     render(){
+        let user_view = '';
+
+        switch(this.state.user_view){
+            case 'StepList':
+                user_view = <StepList steps={ this.state.steps } />;
+                break;
+            case 'StepCarousel':
+                user_view = <StepCarousel />
+                break;
+
+        }
+
         return(
             <div className="row">
                 <div className="col-md-12">
-                    <StepList
-                        steps={ this.state.steps } />
+                    {user_view}
                 </div>
             </div>
         );

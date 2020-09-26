@@ -94,7 +94,7 @@ class IngredientList extends React.Component {
 
         return (
             <div>
-                <h3>Ingredients:</h3>
+                <h3>Ingredients</h3>
                 <ul className="ingredient-list pl-0">
                     {items}
                 </ul>
