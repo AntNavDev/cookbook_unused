@@ -56,27 +56,24 @@
                 });
 
                 this.on('removedfile', function(){
-                    @if($recipe->display_image)
-                        fetch(delete_image_route, {
-                            method: 'DELETE',
-                            headers: {
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                            },
-                        })
-                        .then(response => response.json())
-                        .then((data) => {
-                            console.log("Data:", data);
-                            if(data.success)
-                            {
-                                var messageData = {
-                                    message: 'Image Deleted!',
-                                    level: 'success'
-                                };
+                    fetch(delete_image_route, {
+                        method: 'DELETE',
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                    })
+                    .then(response => response.json())
+                    .then((data) => {
+                        if(data.success)
+                        {
+                            var messageData = {
+                                message: 'Image Deleted!',
+                                level: 'success'
+                            };
 
-                                document.getElementById('info-message').setAttribute('data', JSON.stringify(messageData));
-                            }
-                        });
-                    @endif
+                            document.getElementById('info-message').setAttribute('data', JSON.stringify(messageData));
+                        }
+                    });
                 });
             },
             success: function(file, response){
@@ -84,7 +81,7 @@
                     message: 'Image Uploaded!',
                     level: 'success'
                 };
-                delete_image_route = response.delete_image_link;
+                delete_image_route = response.delete_image_path;
                 document.getElementById('info-message').setAttribute('data', JSON.stringify(messageData));
             }
         });
