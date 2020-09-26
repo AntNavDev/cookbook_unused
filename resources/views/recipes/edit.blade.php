@@ -18,8 +18,15 @@
                 ];
             @endphp
             {{ csrf_field() }}
+            <!-- Add Ingredient Component -->
             <div id="add-ingredient"
-                data="{{ json_encode($add_ingredient_data) }}"></div>
+                data="{{ json_encode($add_ingredient_data) }}">
+            </div>
+
+            <!-- Add Step Component -->
+            <div id="add-step"
+                data="">
+            </div>
         </div>
 
         <div class="col-md-6">

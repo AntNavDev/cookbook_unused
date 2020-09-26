@@ -18,3 +18,5 @@ require('./components/RecipeCardSpinner');
 require('./components/AddIngredient');
 require('./components/AddIngredientForm');
 require('./components/InfoMessage');
+require('./components/AddStep');
+require('./components/StepList');
