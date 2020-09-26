@@ -9,6 +9,9 @@
     <div class="row">
         <div class="col-md-6">
             <h2>{{ $recipe->name }}</h2>
+
+            {{ csrf_field() }}
+            <!-- Add Ingredient Component -->
             @php
                 $add_ingredient_data = [
                     'recipeID' => $recipe->id,
@@ -17,15 +20,21 @@
                     'canAlterItems' => auth()->user()->recipes->contains($recipe),
                 ];
             @endphp
-            {{ csrf_field() }}
-            <!-- Add Ingredient Component -->
             <div id="add-ingredient"
                 data="{{ json_encode($add_ingredient_data) }}">
             </div>
 
             <!-- Add Step Component -->
+            @php
+                $add_step_data = [
+                    'recipeID' => $recipe->id,
+                    'steps' => $recipe->steps,
+                    'formAction' => '',
+                    'canAlterItems' => auth()->user()->recipes->contains($recipe),
+                ];
+            @endphp
             <div id="add-step"
-                data="">
+                data="{{ json_encode($add_step_data) }}">
             </div>
         </div>
 

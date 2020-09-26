@@ -6,10 +6,7 @@ class StepList extends React.Component {
         super(props);
 
         this.state = {
-            steps: [
-                { id: 1, name: "Gathering Ingredients" },
-                { id: 2, name: "Mixing" },
-            ]
+            steps: this.props.steps
         };
     }
 
@@ -17,7 +14,7 @@ class StepList extends React.Component {
         const step_list = this.state.steps.map((step) =>
             <Step key={step.id} data={{ name: step.name }} />
         );
-        console.log("step_list:", step_list);
+
         return(
             <div>
                 <ul>

@@ -77207,19 +77207,28 @@ var AddStep = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(AddStep);
 
   function AddStep(props) {
+    var _this;
+
     _classCallCheck(this, AddStep);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.state = {
+      steps: _this.props.data.steps
+    };
+    return _this;
   }
 
   _createClass(AddStep, [{
     key: "render",
     value: function render() {
+      console.log("Steps in addStep:", this.state.steps);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-md-12"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_StepList__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_StepList__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        steps: this.state.steps
+      })));
     }
   }]);
 
@@ -77232,15 +77241,23 @@ var App = /*#__PURE__*/function (_React$Component2) {
   var _super2 = _createSuper(App);
 
   function App(props) {
+    var _this2;
+
     _classCallCheck(this, App);
 
-    return _super2.call(this, props);
+    _this2 = _super2.call(this, props);
+    _this2.state = {
+      data: JSON.parse(_this2.props.data)
+    };
+    return _this2;
   }
 
   _createClass(App, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(AddStep, null);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(AddStep, {
+        data: this.state.data
+      });
     }
   }]);
 
@@ -77248,7 +77265,10 @@ var App = /*#__PURE__*/function (_React$Component2) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 if (document.getElementById('add-step')) {
-  var element = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(App, null);
+  var data = document.getElementById('add-step').getAttribute('data');
+  var element = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(App, {
+    data: data
+  });
   react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(element, document.getElementById('add-step'));
 }
 
@@ -77914,13 +77934,7 @@ var StepList = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      steps: [{
-        id: 1,
-        name: "Gathering Ingredients"
-      }, {
-        id: 2,
-        name: "Mixing"
-      }]
+      steps: _this.props.steps
     };
     return _this;
   }
@@ -77936,7 +77950,6 @@ var StepList = /*#__PURE__*/function (_React$Component) {
           }
         });
       });
-      console.log("step_list:", step_list);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, step_list));
     }
   }]);
