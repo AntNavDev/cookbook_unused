@@ -3,7 +3,7 @@ import React from 'react';
 class Step extends React.Component {
     constructor(props){
         super(props);
-
+        console.log("The props for the step:", this.props.data);
         this.state = {
             name: this.props.data.name
         };
@@ -11,7 +11,7 @@ class Step extends React.Component {
 
     render(){
         return(
-            <div>This is a step component</div>
+            <div>Step: { this.state.name }</div>
         );
     }
 }
