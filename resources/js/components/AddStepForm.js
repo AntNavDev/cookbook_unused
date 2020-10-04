@@ -1,4 +1,5 @@
 import React from 'react';
+import { messageContainer } from './../globals.js';
 
 class AddStepForm extends React.Component {
     constructor(props){
@@ -13,6 +14,8 @@ class AddStepForm extends React.Component {
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.updateSteps = this.props.updateSteps.bind(this);
+        this.showView = this.props.showView.bind(this);
     }
 
     handleInputChange(event){
@@ -35,7 +38,31 @@ class AddStepForm extends React.Component {
             description: this.state.description,
         };
 
-        console.log("Submit form!", formData);
+        fetch(this.state.formAction, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => response.json())
+        .then((data) => {
+            this.updateSteps(data.steps)
+            this.showView('StepList');
+
+            var messageData = {
+                message: data.message
+            };
+
+            if(data.success){
+                messageData.level = 'success';
+            }
+            else{
+                messageData.level = 'error';
+            }
+
+            messageContainer.setAttribute('data', JSON.stringify(messageData));
+        });
     }
 
     render(){

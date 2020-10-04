@@ -31,6 +31,9 @@ Route::group(['middleware' => ['auth']], function(){
     // Ingredient Routes
     Route::post('ingredient/store', 'IngredientController@store')->name('ingredients.store');
     Route::delete('ingredient/{ingredient}', 'IngredientController@delete')->name('ingredients.delete');
+
+    // Step Routes
+    Route::post('step/store', 'StepController@store')->name('steps.store');
 });
 
 

@@ -12,7 +12,6 @@ class AddIngredientForm extends React.Component {
             custom_weight: '',
             formAction: this.props.formAction,
             recipeID: this.props.recipeID,
-            ingredients: this.props.ingredients
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);

@@ -38,7 +38,6 @@ class AddIngredient extends React.Component {
                 formElement = <AddIngredientForm
                                 formAction={this.state.formAction}
                                 recipeID={this.state.recipeID}
-                                ingredients={this.state.ingredients}
                                 updateIngredients={this.updateIngredients}
                                 toggleShowForm={this.toggleShowForm} />
             }

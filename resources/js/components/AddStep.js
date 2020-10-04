@@ -11,16 +11,23 @@ class AddStep extends React.Component {
         this.state = {
             steps: this.props.data.steps,
             user_view: 'StepList',
-            formAction: '',
-            recipeID: '',
+            formAction: this.props.data.formAction,
+            recipeID: this.props.data.recipeID,
         };
 
         this.showView = this.showView.bind(this);
+        this.updateSteps = this.updateSteps.bind(this);
     }
 
     showView(view){
         this.setState({
             user_view: view
+        });
+    }
+
+    updateSteps(steps){
+        this.setState({
+            steps: steps
         });
     }
 
@@ -37,7 +44,9 @@ class AddStep extends React.Component {
             case 'AddStepForm':
                 user_view = <AddStepForm
                                 formAction={this.state.formAction}
-                                recipeID={this.state.recipeID} />;
+                                recipeID={this.state.recipeID}
+                                updateSteps={this.updateSteps}
+                                showView={this.showView} />;
                 break;
 
         }

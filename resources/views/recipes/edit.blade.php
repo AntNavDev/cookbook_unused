@@ -29,8 +29,7 @@
                 $add_step_data = [
                     'recipeID' => $recipe->id,
                     'steps' => $recipe->steps,
-                    'formAction' => '',
-                    'canAlterItems' => auth()->user()->recipes->contains($recipe),
+                    'formAction' => route('steps.store'),
                 ];
             @endphp
             <div id="add-step"
