@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import StepList from './StepList';
 import StepCarousel from './StepCarousel';
+import AddStepForm from './AddStepForm';
 
 class AddStep extends React.Component {
     constructor(props){
@@ -9,8 +10,18 @@ class AddStep extends React.Component {
 
         this.state = {
             steps: this.props.data.steps,
-            user_view: 'StepCarousel',
+            user_view: 'StepList',
+            formAction: '',
+            recipeID: '',
         };
+
+        this.showView = this.showView.bind(this);
+    }
+
+    showView(view){
+        this.setState({
+            user_view: view
+        });
     }
 
     render(){
@@ -21,7 +32,12 @@ class AddStep extends React.Component {
                 user_view = <StepList steps={ this.state.steps } />;
                 break;
             case 'StepCarousel':
-                user_view = <StepCarousel />
+                user_view = <StepCarousel />;
+                break;
+            case 'AddStepForm':
+                user_view = <AddStepForm
+                                formAction={this.state.formAction}
+                                recipeID={this.state.recipeID} />;
                 break;
 
         }
@@ -29,7 +45,19 @@ class AddStep extends React.Component {
         return(
             <div className="row">
                 <div className="col-md-12">
-                    {user_view}
+                    <div className="row">
+                        <div className="col-md-12">
+                            <button className="mr-2" onClick={() => this.showView('StepList')}>Steps</button>
+                            <button className="mx-2" onClick={() => this.showView('StepCarousel')}>Carousel</button>
+                            <button className="mx-2" onClick={() => this.showView('AddStepForm')}>Add Step</button>
+                        </div>
+                    </div>
+
+                    <div className="row">
+                        <div className="col-md-12">
+                            {user_view}
+                        </div>
+                    </div>
                 </div>
             </div>
         );
