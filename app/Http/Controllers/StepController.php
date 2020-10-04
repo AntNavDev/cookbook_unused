@@ -5,15 +5,25 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Step;
 use App\Recipe;
+use Validator;
 
 class StepController extends Controller
 {
     public function store(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
             'description' => 'required',
         ]);
+
+        if($validator->fails())
+        {
+            return response()->json([
+                'success' => false,
+                'message' => 'Looks like there are some missing fields!',
+                'missing_fields' => $validator->messages(),
+            ]);
+        }
 
         if($request->has('recipe_id'))
         {

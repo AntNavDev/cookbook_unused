@@ -50,8 +50,6 @@ class AddIngredientForm extends React.Component {
         })
         .then(response => response.json())
         .then((data) => {
-            this.updateIngredients(data.ingredients)
-            this.toggleShowForm();
 
             var messageData = {
                 message: data.message
@@ -59,6 +57,9 @@ class AddIngredientForm extends React.Component {
 
             if(data.success){
                 messageData.level = 'success';
+
+                this.updateIngredients(data.ingredients)
+                this.toggleShowForm();
             }
             else{
                 messageData.level = 'error';

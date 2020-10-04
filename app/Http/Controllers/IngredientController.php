@@ -5,17 +5,27 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Ingredient;
 use App\Recipe;
+use Validator;
 
 class IngredientController extends Controller
 {
     public function store(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
             'amount' => 'required',
             'custom_weight' => 'required_without:standard_weight',
             'standard_weight' => 'required_without:custom_weight',
         ]);
+
+        if($validator->fails())
+        {
+            return response()->json([
+                'success' => false,
+                'message' => 'Looks like there are some missing fields!',
+                'missing_fields' => $validator->messages(),
+            ]);
+        }
 
         if($request->has('recipe_id'))
         {

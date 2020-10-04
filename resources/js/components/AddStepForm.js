@@ -13,6 +13,7 @@ class AddStepForm extends React.Component {
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.handInputErrors = this.handleInputErros.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.updateSteps = this.props.updateSteps.bind(this);
         this.showView = this.props.showView.bind(this);
@@ -26,6 +27,10 @@ class AddStepForm extends React.Component {
         this.setState({
             [name]: value
         });
+    }
+
+    handleInputErros(errors){
+        console.log("Handle these errors:", errors);
     }
 
     handleSubmit(event){
@@ -47,8 +52,6 @@ class AddStepForm extends React.Component {
         })
         .then(response => response.json())
         .then((data) => {
-            this.updateSteps(data.steps)
-            this.showView('StepList');
 
             var messageData = {
                 message: data.message
@@ -56,9 +59,14 @@ class AddStepForm extends React.Component {
 
             if(data.success){
                 messageData.level = 'success';
+                this.updateSteps(data.steps)
+                this.showView('StepList');
             }
             else{
                 messageData.level = 'error';
+                if(typeof data.missing_fields !== 'undefined'){
+                    handleInputErros(data.missing_fields);
+                }
             }
 
             messageContainer.setAttribute('data', JSON.stringify(messageData));

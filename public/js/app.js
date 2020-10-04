@@ -77100,16 +77100,16 @@ var AddIngredientForm = /*#__PURE__*/function (_React$Component) {
       }).then(function (response) {
         return response.json();
       }).then(function (data) {
-        _this2.updateIngredients(data.ingredients);
-
-        _this2.toggleShowForm();
-
         var messageData = {
           message: data.message
         };
 
         if (data.success) {
           messageData.level = 'success';
+
+          _this2.updateIngredients(data.ingredients);
+
+          _this2.toggleShowForm();
         } else {
           messageData.level = 'error';
         }
@@ -77402,6 +77402,7 @@ var AddStepForm = /*#__PURE__*/function (_React$Component) {
       recipeID: _this.props.recipeID
     };
     _this.handleInputChange = _this.handleInputChange.bind(_assertThisInitialized(_this));
+    _this.handInputErrors = _this.handleInputErros.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.updateSteps = _this.props.updateSteps.bind(_assertThisInitialized(_this));
     _this.showView = _this.props.showView.bind(_assertThisInitialized(_this));
@@ -77415,6 +77416,11 @@ var AddStepForm = /*#__PURE__*/function (_React$Component) {
       var value = target.type === 'checkbox' ? target.checked : target.value;
       var name = target.name;
       this.setState(_defineProperty({}, name, value));
+    }
+  }, {
+    key: "handleInputErros",
+    value: function handleInputErros(errors) {
+      console.log("Handle these errors:", errors);
     }
   }, {
     key: "handleSubmit",
@@ -77438,18 +77444,22 @@ var AddStepForm = /*#__PURE__*/function (_React$Component) {
       }).then(function (response) {
         return response.json();
       }).then(function (data) {
-        _this2.updateSteps(data.steps);
-
-        _this2.showView('StepList');
-
         var messageData = {
           message: data.message
         };
 
         if (data.success) {
           messageData.level = 'success';
+
+          _this2.updateSteps(data.steps);
+
+          _this2.showView('StepList');
         } else {
           messageData.level = 'error';
+
+          if (typeof data.missing_fields !== 'undefined') {
+            handleInputErros(data.missing_fields);
+          }
         }
 
         _globals_js__WEBPACK_IMPORTED_MODULE_1__["messageContainer"].setAttribute('data', JSON.stringify(messageData));
