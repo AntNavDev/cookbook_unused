@@ -2,12 +2,15 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { messageContainer } from './../globals.js';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 
 class ListItem extends React.Component {
     constructor(props){
         super(props);
         this.state = {
             ingredient: this.props.ingredient,
+            showDeleteModal: false,
         };
 
         this.deleteObject = this.deleteObject.bind(this);
@@ -46,7 +49,7 @@ class ListItem extends React.Component {
     }
 
     render(){
-        var delete_icon = this.props.canDelete ? <FontAwesomeIcon icon={faTrash} className="float-right" onClick={this.deleteObject} /> : '';
+        var delete_icon = this.props.canDelete ? <FontAwesomeIcon icon={faTrash} className="float-right" onClick={() => this.setState({showDeleteModal: true})} /> : '';
         return(
             <li className="list-item">
                 <div className="row">
@@ -60,6 +63,23 @@ class ListItem extends React.Component {
                         {delete_icon}
                     </div>
                 </div>
+
+                <Modal show={this.state.showDeleteModal} onHide={() => this.setState({showDeleteModal: false})}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Delete {this.state.ingredient.name}?</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        This will permanently remove {this.state.ingredient.name} from the ingredient list.
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={() => this.setState({showDeleteModal: false})}>
+                            Close
+                        </Button>
+                        <Button variant="danger" onClick={this.deleteObject}>
+                            Delete
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
             </li>
         );
     }

@@ -52,7 +52,7 @@ class AddStep extends React.Component {
         }
 
         return(
-            <div className="row">
+            <div className="row mt-4">
                 <div className="col-md-12">
                     <div className="row">
                         <div className="col-md-12">
