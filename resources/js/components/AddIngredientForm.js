@@ -12,6 +12,7 @@ class AddIngredientForm extends React.Component {
             custom_weight: '',
             formAction: this.props.formAction,
             recipeID: this.props.recipeID,
+            errors: '',
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -63,6 +64,11 @@ class AddIngredientForm extends React.Component {
             }
             else{
                 messageData.level = 'error';
+                if(typeof data.missing_fields !== 'undefined'){
+                    this.setState({
+                        errors: data.missing_fields
+                    });
+                }
             }
 
             messageContainer.setAttribute('data', JSON.stringify(messageData));
@@ -78,21 +84,24 @@ class AddIngredientForm extends React.Component {
                     <div>
                         <label>
                             Name:
-                            <input name="name" type="text" className="form-control" value={this.state.name} onChange={this.handleInputChange} required />
+                            <input name="name" type="text" className={typeof this.state.errors['name'] !== 'undefined' ? ('form-control input-error') : ('form-control')} value={this.state.name} onChange={this.handleInputChange} required />
+                            {typeof this.state.errors['name'] !== 'undefined' ? (<span className="red-text">{this.state.errors['name'][0]}</span>) : ('')}
                         </label>
                     </div>
 
                     <div>
                         <label>
                             Amount:
-                            <input name="amount" type="text" className="form-control" value={this.state.amount} onChange={this.handleInputChange} required />
+                            <input name="amount" type="text" className={typeof this.state.errors['amount'] !== 'undefined' ? ('form-control input-error') : ('form-control')} value={this.state.amount} onChange={this.handleInputChange} required />
+                            {typeof this.state.errors['amount'] !== 'undefined' ? (<span className="red-text">{this.state.errors['amount'][0]}</span>) : ('')}
                         </label>
                     </div>
 
                     <div>
                         <label>
                             Custom Weight:
-                            <input name="custom_weight" type="text" className="form-control" value={this.state.custom_weight} onChange={this.handleInputChange} required />
+                            <input name="custom_weight" type="text" className={typeof this.state.errors['custom_weight'] !== 'undefined' ? ('form-control input-error') : ('form-control')} value={this.state.custom_weight} onChange={this.handleInputChange} required />
+                            {typeof this.state.errors['custom_weight'] !== 'undefined' ? (<span className="red-text">{this.state.errors['custom_weight'][0]}</span>) : ('')}
                         </label>
                     </div>
 

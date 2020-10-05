@@ -10,10 +10,10 @@ class AddStepForm extends React.Component {
             description: '',
             formAction: this.props.formAction,
             recipeID: this.props.recipeID,
+            errors: '',
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
-        this.handInputErrors = this.handleInputErros.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.updateSteps = this.props.updateSteps.bind(this);
         this.showView = this.props.showView.bind(this);
@@ -27,10 +27,6 @@ class AddStepForm extends React.Component {
         this.setState({
             [name]: value
         });
-    }
-
-    handleInputErros(errors){
-        console.log("Handle these errors:", errors);
     }
 
     handleSubmit(event){
@@ -65,7 +61,9 @@ class AddStepForm extends React.Component {
             else{
                 messageData.level = 'error';
                 if(typeof data.missing_fields !== 'undefined'){
-                    handleInputErros(data.missing_fields);
+                    this.setState({
+                        errors: data.missing_fields
+                    });
                 }
             }
 
@@ -78,16 +76,18 @@ class AddStepForm extends React.Component {
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <div>
-                        <label>
-                            Name:
-                            <input name="name" type="text" className="form-control" value={this.state.name} onChange={this.handleInputChange} required />
-                        </label>
+                    <label>
+                        Name:
+                        <input name="name" type="text" className={typeof this.state.errors['name'] !== 'undefined' ? ('form-control input-error') : ('form-control')} value={this.state.name} onChange={this.handleInputChange} required />
+                        {typeof this.state.errors['name'] !== 'undefined' ? (<span className="red-text">{this.state.errors['name'][0]}</span>) : ('')}
+                    </label>
                     </div>
 
                     <div>
                         <label>
                             Description:
-                            <textarea name="description" className="form-control" value={this.state.description} onChange={this.handleInputChange} required></textarea>
+                            <textarea name="description" className={typeof this.state.errors['description'] !== 'undefined' ? ('form-control input-error') : ('form-control')} value={this.state.description} onChange={this.handleInputChange} required></textarea>
+                            {typeof this.state.errors['description'] !== 'undefined' ? (<span className="red-text">{this.state.errors['description'][0]}</span>) : ('')}
                         </label>
                     </div>
 

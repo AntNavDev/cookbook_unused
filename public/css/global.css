@@ -125,3 +125,9 @@ svg.fa-question-circle {
     background-color: #d84d4d;
     color: #FFF;
 }
+.red-text {
+    color: #A31F1F;
+}
+.input-error {
+    border: 1px solid #A31F1F;
+}
