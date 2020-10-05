@@ -73,7 +73,7 @@ class ListItem extends React.Component {
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={() => this.setState({showDeleteModal: false})}>
-                            Close
+                            Cancel
                         </Button>
                         <Button variant="danger" onClick={this.deleteObject}>
                             Delete
