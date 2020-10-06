@@ -36,7 +36,7 @@ class AddStep extends React.Component {
 
         switch(this.state.user_view){
             case 'StepList':
-                user_view = <StepList steps={ this.state.steps } showModal={true} />;
+                user_view = <StepList steps={ this.state.steps } showModal={false} />;
                 break;
             case 'StepCarousel':
                 user_view = <StepCarousel />;

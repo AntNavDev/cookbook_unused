@@ -131,3 +131,8 @@ svg.fa-question-circle {
 .input-error {
     border: 1px solid #A31F1F;
 }
+.recipe-main-img {
+    height: 350px;
+    width: 500px;
+    object-fit: cover;
+}
