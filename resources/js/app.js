@@ -24,3 +24,4 @@ require('./components/Step');
 require('./components/StepCarousel');
 require('./components/AddStepForm');
 require('./components/ViewIngredientList');
+require('./components/ViewStepList');

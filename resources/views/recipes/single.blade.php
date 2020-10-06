@@ -20,12 +20,12 @@
 
             <!-- Add Step Component -->
             @php
-                $add_step_data = [
+                $step_data = [
                     'steps' => $recipe->steps,
                 ];
             @endphp
             <div id="view-step-list"
-                data="{{ json_encode($add_step_data) }}">
+                data="{{ json_encode($step_data) }}">
             </div>
         </div>
         <div class="col-md-8">
