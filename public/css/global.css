@@ -67,7 +67,8 @@ svg.fa-question-circle {
 .fa-times:hover {
     cursor: pointer;
 }
-.ingredient-list .list-item {
+.ingredient-list .list-item,
+.step-list .list-item {
     list-style: none;
 }
 .homepage-spinner .recipe-spinner-item {

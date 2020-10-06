@@ -81855,7 +81855,8 @@ var Step = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      name: _this.props.data.name
+      name: _this.props.data.name,
+      showDetails: _this.props.showDetails
     };
     return _this;
   }
@@ -81863,7 +81864,7 @@ var Step = /*#__PURE__*/function (_React$Component) {
   _createClass(Step, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Step: ", this.state.name);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.showDetails ? this.state.description : ''));
     }
   }]);
 
@@ -81986,7 +81987,8 @@ var StepList = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       steps: _this.props.steps,
-      showModal: _this.props.showModal
+      showModal: _this.props.showModal,
+      showDetailedList: _this.props.showDetailedList
     };
     return _this;
   }
@@ -82001,7 +82003,8 @@ var StepList = /*#__PURE__*/function (_React$Component) {
       if (this.state.showModal) {
         var items = this.state.steps.map(function (step) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-            key: step.id
+            key: step.id,
+            className: "list-item"
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Step__WEBPACK_IMPORTED_MODULE_1__["default"], {
             data: {
               name: step.name
@@ -82023,7 +82026,8 @@ var StepList = /*#__PURE__*/function (_React$Component) {
       } else {
         var _items = this.state.steps.map(function (step) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-            key: step.id
+            key: step.id,
+            className: "list-item"
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Step__WEBPACK_IMPORTED_MODULE_1__["default"], {
             data: {
               name: step.name

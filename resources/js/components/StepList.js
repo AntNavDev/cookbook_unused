@@ -9,6 +9,7 @@ class StepList extends React.Component {
         this.state = {
             steps: this.props.steps,
             showModal: this.props.showModal,
+            showDetailedList: this.props.showDetailedList,
         };
     }
 
@@ -16,7 +17,7 @@ class StepList extends React.Component {
         var view = '';
         if(this.state.showModal){
             const items = this.state.steps.map((step) =>
-                <li key={step.id}><Step data={{ name: step.name }} /></li>
+                <li key={step.id} className="list-item"><Step data={{ name: step.name }} /></li>
             );
 
             view = (
@@ -34,7 +35,7 @@ class StepList extends React.Component {
             );
         } else {
             const items = this.state.steps.map((step) =>
-                <li key={step.id}><Step data={{ name: step.name }} /></li>
+                <li key={step.id} className="list-item"><Step data={{ name: step.name }} /></li>
             );
 
             view = (
