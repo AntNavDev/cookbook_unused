@@ -15,6 +15,8 @@ class HomeController extends Controller
         $latest_recipes = Recipe::has('images')
                                 ->where('is_public', 1)
                                 ->orderBy('created_at', 'desc')
+                                ->whereHas('steps')
+                                ->whereHas('ingredients')
                                 // ->take(5)
                                 ->get()
                                 ->toArray();

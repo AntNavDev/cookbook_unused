@@ -15,7 +15,7 @@ class ViewStepList extends React.Component {
         return(
             <div>
                 <StepList
-                    steps={this.state.steps} />
+                    steps={this.state.steps} showDetailedList={true} />
             </div>
         );
     }

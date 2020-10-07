@@ -5,7 +5,7 @@ class Step extends React.Component {
         super(props);
 
         this.state = {
-            name: this.props.data.name,
+            step: this.props.step,
             showDetails: this.props.showDetails,
         };
     }
@@ -13,8 +13,8 @@ class Step extends React.Component {
     render(){
         return(
             <>
-                <div>{ this.state.name }</div>
-                <div>{ this.state.showDetails ? this.state.description : '' }</div>
+                <div>{ this.state.step.name }</div>
+                <div>{ this.state.showDetails ? this.state.step.description : '' }</div>
             </>
         );
     }

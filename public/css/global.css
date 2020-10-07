@@ -135,5 +135,5 @@ svg.fa-question-circle {
 .recipe-main-img {
     height: 350px;
     width: 500px;
-    object-fit: cover;
+    object-fit: contain;
 }

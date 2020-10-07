@@ -81855,7 +81855,7 @@ var Step = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      name: _this.props.data.name,
+      step: _this.props.step,
       showDetails: _this.props.showDetails
     };
     return _this;
@@ -81864,7 +81864,7 @@ var Step = /*#__PURE__*/function (_React$Component) {
   _createClass(Step, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.showDetails ? this.state.description : ''));
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.step.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.showDetails ? this.state.step.description : ''));
     }
   }]);
 
@@ -82006,9 +82006,8 @@ var StepList = /*#__PURE__*/function (_React$Component) {
             key: step.id,
             className: "list-item"
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Step__WEBPACK_IMPORTED_MODULE_1__["default"], {
-            data: {
-              name: step.name
-            }
+            step: step,
+            showDetails: _this2.state.showDetailedList
           }));
         });
         view = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Modal__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -82029,9 +82028,8 @@ var StepList = /*#__PURE__*/function (_React$Component) {
             key: step.id,
             className: "list-item"
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Step__WEBPACK_IMPORTED_MODULE_1__["default"], {
-            data: {
-              name: step.name
-            }
+            step: step,
+            showDetails: _this2.state.showDetailedList
           }));
         });
 
@@ -82220,7 +82218,8 @@ var ViewStepList = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_StepList__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        steps: this.state.steps
+        steps: this.state.steps,
+        showDetailedList: true
       }));
     }
   }]);
